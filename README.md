@@ -3,7 +3,7 @@
 # Isometric Box Generator for Aseprite
 This script lets you create boxes of various sizes in [Aseprite](https://www.aseprite.org/):
 
-![](https://i.imgur.com/QwJnhXM.mp4)
+![](https://i.imgur.com/prDaC82.gif)
 
 You can set a custom color for each of the sides, set a highlight and stroke color. You can also choose between two types of the corners: 2px and 3px. You can read more about the differences [here](http://www.gas13.ru/v3/tutorials/isometric_pixelart_tutorial_the_two_types.php).
 
