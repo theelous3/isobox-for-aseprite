@@ -416,7 +416,7 @@ dlg
     :slider{
         id="zSize",
         label="Height:",
-        min=3,
+        min=1,
         max=maxSize.z,
         value=defaultSize.z,
         onchange=function()
@@ -441,7 +441,7 @@ dlg
             updating = true
 
             local v = tonumber(dlg.data.zSizeNum) or defaultSize.z
-            v = math.max(3, math.min(maxSize.z, v))
+            v = math.max(1, math.min(maxSize.z, v))
 
             dlg:modify{ id="zSizeNum", text=tostring(v) }
             dlg:modify{ id="zSize",    value=v }
@@ -480,13 +480,18 @@ dlg
     onclick = function()
         local data = dlg.data
 
+        -- check min height of z >= 3
+        local zSize = data.zSize or defaultSize.z
+        if zSize < 3 then
+            app.alert("Height cannot be less than 3")
+            return
+        end
+
         app.transaction(function()
-            -----------------------------------------------------
-            -- sizes
-            -----------------------------------------------------
+
             local xSize = data.xSize or defaultSize.x
             local ySize = data.ySize or defaultSize.y
-            local zSize = data.zSize or defaultSize.z
+
 
             -----------------------------------------------------
             -- cube type --

@@ -3,7 +3,7 @@
 # Isometric Box Generator for Aseprite
 This script lets you create boxes of various sizes in [Aseprite](https://www.aseprite.org/):
 
-![](https://i.imgur.com/prDaC82.gif)
+![](https://i.imgur.com/PMbUGZr.gif)
 
 You can set a custom color for each of the sides of the box. By default it will generate shades of your current foreground color.
 
