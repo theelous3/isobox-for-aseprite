@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Animated sprite editor &amp; pixel art tool">
+    <meta name="author" content="Igara Studio S.A.">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Aseprite" />
+    <meta property="og:description" content="Animated sprite editor &amp; pixel art tool" />
+    <meta property="og:image" content="https://www.aseprite.org/assets/images/og-image.png" />
+    <meta property="og:url" content="https://www.aseprite.org/" />
+
+    <title>Aseprite - Docs</title>
+    <link rel="shortcut icon" href="/assets/images/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link href="/assets/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/assets/css/brands.min.css" rel="stylesheet">
+    <link href="/assets/css/solid.min.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/aseprite.css?v=32" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button>
+          <a class="navbar-brand" href="/" title="Home"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="docs-button active">
+              <a href="/docs/"><i class="sprite sprite-docs"></i>&nbsp;Docs</a></li>
+            <li><a href="https://blog.aseprite.org/"><i class="sprite sprite-blog"></i>&nbsp;Blog</a></li>
+            <li><a href="https://community.aseprite.org/"><i class="sprite sprite-community"></i>&nbsp;Community</a></li>
+            <li ><a href="/support/"><i class="sprite sprite-support"></i>&nbsp;Support</a></li>
+            <li class="buy-button">
+              <a href="/download/"><i class="sprite sprite-download"></i>&nbsp;Buy Now</a></li>
+            <li class="social-buttons">
+              <a href="https://twitter.com/aseprite" title="Twitter"><i class="fab fa-twitter-square"></i></a>
+              <a href="https://www.facebook.com/aseprite" title="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://discord.gg/Yb2CeX8" title="Discord" class="discord-button"><i class="fab fa-discord"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<div class="top-shadow"></div>
+<div id="content-wrapper">
+<div id="content">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs nav-justified">
+<li class="active"><a href="/docs/">Documentation</a></li>
+<li class=""><a href="/api/">API</a></li>
+<li class=""><a href="/faq/">FAQ</a></li>
+<li class=""><a href="/quickref/">Quick Reference</a></li>
+<li class=""><a href="/tutorial/">Tutorial</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3" style="padding-top: 2em">
+      <script type="text/javascript" src="/assets/js/search.js?v=2"></script>
+      <script type="text/javascript">
+        searchUrl = "/search/docs";
+        document.addEventListener("click", onSearchDismiss);
+      </script>
+      <input id="search-terms" type="text" class="form-control" placeholder="Search documentation..." autofocus onfocus="onSearchFocus(event)" onkeydown="onSearchKeyDown(event)" oninput="onSearchInput(event)">
+      <a href="https://community.aseprite.org/t/14148" style="float:right; font-size:small; font-style:italic;">Feedback</a>
+      <ul id="search-result" class="search-result" onkeydown="onSearchResultKeyDown(event)">
+        <li><small class="text-right">press ENTER to search or ESC to cancel</small></li>
+      </ul>
+      <h3 id="table-of-content">Table of content<a href="#table-of-content" class="section_anchor"></a></h3>
+<p><a href="/docs/">Overview</a></p>
+<p><a href="/docs/basics/">Basics</a></p>
+<ul>
+<li><a href="/docs/sprite/">Image &amp; Sprite</a></li>
+<li><a href="/docs/color/">Color</a></li>
+<li><a href="/docs/drawing/">Drawing</a></li>
+<li><a href="/docs/selecting/">Selecting</a></li>
+<li><a href="/docs/transformations/">Transformations</a></li>
+</ul>
+<p><a href="/docs/sprite/">Sprite</a></p>
+<ul>
+<li><a href="/docs/layers/">Layers</a></li>
+<li><a href="/docs/animation/">Animation</a></li>
+<li><a href="/docs/tilemap/">Tilemap</a></li>
+<li><a href="/docs/slices/">Slices</a></li>
+</ul>
+<p><a href="/docs/files/">Files</a></p>
+<ul>
+<li><a href="/docs/save/">Save</a></li>
+<li><a href="/docs/exporting/">Exporting</a></li>
+<li><a href="/docs/sprite-sheet/">Sprite Sheet</a></li>
+<li><a href="/docs/cli/">CLI</a></li>
+</ul>
+<p><a href="/docs/customization/">Customization</a></p>
+<ul>
+<li><a href="/docs/preferences/">Preferences</a></li>
+<li><a href="/docs/extensions/">Extensions</a></li>
+<li><a href="/docs/scripting/">Scripting</a></li>
+</ul>
+      <hr>
+      <p><em><a href="https://github.com/aseprite/docs/edit/main/overview.md">Edit page</a></em></p>
+    </div>
+    <div id="doc_content" class="col-md-9">
+      <h1 id="aseprite-help">Aseprite Help<a href="#aseprite-help" class="section_anchor"></a></h1>
+<p>Aseprite lets you create 2D animations for videogames. From sprites,
+to pixel-art, retro style graphics, and whatever you like about the
+<a href="https://en.wikipedia.org/wiki/Third_generation_of_video_game_consoles">8-bit</a>
+and <a href="https://en.wikipedia.org/wiki/Fourth_generation_of_video_game_consoles">16-bit</a> era.</p>
+<p>Here you will find some help, tutorials, and little tips to use
+Aseprite and start getting the best from it from the very
+beginning. If you have some questions you can start looking at the
+<a href="/faq/">Frequently Asked Questions</a>.</p>
+<p>To get started, you can print the <a href="/quickref/">Quick Reference</a>. It
+contains several keyboard shortcuts, so it could be handy to have it
+at your side.</p>
+<p><strong><a href="/docs/basics/">Basics</a></strong>: General concepts, elements in the window, expected workflow, etc.</p>
+<ul>
+<li><a href="/docs/workspace/">Workspace</a></li>
+<li><a href="/docs/workflow/">Workflow</a></li>
+<li><a href="/docs/sprite/">Sprite</a></li>
+</ul>
+<p><strong><a href="/docs/sprite/">Image &amp; Sprite</a></strong>:</p>
+<ul>
+<li><a href="/docs/new-sprite/">Create a new Sprite</a> or <a href="/docs/open/">Open an existing one</a></li>
+<li><a href="/docs/sprite-size/">Resize Sprite</a></li>
+<li><a href="/docs/color-mode/">Color Mode</a> &amp; <a href="/docs/color-profile/">Color Profile</a></li>
+<li><a href="/docs/save/">Save Your Work</a></li>
+</ul>
+<p><strong><a href="/docs/animation/">Animation</a></strong>: How to create animations &amp; manipulate frames</p>
+<ul>
+<li><a href="/docs/onion-skinning/">Onion Skinning</a></li>
+</ul>
+<p><strong><a href="/docs/layers/">Layers</a></strong>: How to handle several layers to compose images</p>
+<p><strong><a href="/docs/selecting/">Selecting</a></strong>: How to select</p>
+<p><strong><a href="/docs/drawing/">Drawing</a></strong>: How to start drawing</p>
+<ul>
+<li><a href="/docs/zoom/">Zoom</a></li>
+</ul>
+<p><strong><a href="/docs/transformations/">Transformations</a></strong>:</p>
+<ul>
+<li><a href="/docs/flip/">Flip</a></li>
+<li><a href="/docs/canvas/">Canvas</a></li>
+<li><a href="/docs/resize/">Resize</a></li>
+<li><a href="/docs/rotate/">Rotate</a></li>
+</ul>
+<p><strong><a href="/docs/exporting/">Exporting</a></strong>:</p>
+<ul>
+<li><a href="/docs/sprite-sheet/">Sprite Sheets</a></li>
+<li><a href="/docs/cli/">Command Line Interface (CLI)</a></li>
+</ul>
+<p><strong><a href="/docs/customization/">Customization</a></strong></p>
+<ul>
+<li><a href="/docs/preferences/">Preferences</a></li>
+<li><a href="/docs/extensions/">Extensions</a></li>
+<li><a href="/docs/scripting/">Scripting</a></li>
+</ul>
+<p><strong><a href="/docs/troubleshooting/">Troubleshooting</a></strong>:</p>
+<ul>
+<li><a href="/docs/data-recovery/">Data Recovery</a></li>
+<li><a href="/docs/reset-preferences/">Reset Preferences</a></li>
+<li><a href="/docs/debug/">Debug Option</a></li>
+</ul>
+<hr>
+<p><strong>SEE ALSO</strong></p>
+<p><a href="/faq/">Frequently Asked Questions</a> |
+<a href="/tutorial/">Tutorial</a></p>
+    </div>
+      </div>
+</div>
+</div>
+</div>
+    <div class="film-decorator"></div>
+    <div id="footer">
+    <div class="container">
+
+      <div class="row">
+		<div class="col-xs-offset-0 col-xs-6 col-sm-offset-0 col-sm-4 col-md-offset-1 col-md-2">
+		  <h4>Links</h4>
+		  <ul>
+			<li><a href="/">Home</a>
+			<li><a href="https://github.com/aseprite/aseprite/issues">Known Issues</a>
+			<li><a href="https://github.com/aseprite/aseprite/issues/new">Bug Report</a>
+			<li><a href="/contributors/">Contributors</a>
+			<li><a href="/donate/">Donations</a>
+		  </ul>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-md-2">
+		  <h4>Community</h4>
+		  <ul>
+			<li><a href="https://community.aseprite.org/"><i class="fab fa-discourse"></i> Aseprite Community</a>
+			<li><a href="https://discord.gg/Yb2CeX8"><i class="fab fa-discord"></i> Discord Server</a>
+			<li><a href="https://steamcommunity.com/app/431730"><i class="fab fa-steam"></i> Steam Community</a>
+			<li><a href="https://www.reddit.com/r/aseprite/"><i class="fab fa-reddit"></i> /r/aseprite</a>
+		  </ul>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-md-2">
+		  <h4>Documentation</h4>
+		  <ul>
+			<li><a href="/quickref/">Quick reference</a>
+			<li><a href="/docs/">Docs</a> - <a href="/faq/">FAQ</a>
+			<li><a href="/tutorial/">Tutorial</a>
+			<li><a href="http://blog.aseprite.org/">Blog</a></li>
+		  </ul>
+		</div>
+		<div class="col-xs-offset-0 col-xs-6 col-sm-offset-3 col-sm-3 col-md-offset-0 col-md-2">
+		  <h4>Development</h4>
+		  <ul>
+			<li><a href="https://github.com/aseprite/aseprite/"><i class="fab fa-github"></i> GitHub</a></li>
+			<li><a href="https://dev.aseprite.org/">Devblog</a></li>
+			<li><a href="/roadmap/">Roadmap</a>
+			<li><a href="https://github.com/aseprite/aseprite/blob/master/CONTRIBUTING.md">Contribute</a>
+		  </ul>
+		</div>
+		<div class="col-xs-offset-4 col-xs-6 col-sm-offset-0 col-sm-3 col-md-offset-0 col-md-2">
+		  <h4>Social</h4>
+		  <ul>
+			<li><a href="https://twitter.com/aseprite/"><i class="fab fa-twitter"></i> Twitter</a>
+			<li><a href="https://mastodon.art/@aseprite" rel="me"><i class="fab fa-mastodon"></i> Mastodon</a>
+			<li><a href="https://www.facebook.com/aseprite"><i class="fab fa-facebook"></i> Facebook</a>
+			<li><a href="https://www.youtube.com/user/aseprite"><i class="fab fa-youtube"></i> YouTube</a>
+			<li><a href="https://www.instagram.com/aseprite/"><i class="fab fa-instagram"></i> Instagram</a>
+		  </ul>
+		</div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <p class="very-bottom">
+&copy; 2001&dash;2025
+<a href="https://igara.com/">Igara Studio S.A.</a> <span>|</span>
+<a href="https://www.aseprite.org/terms/">Terms of Service</a> <span>|</span>
+<a href="https://www.aseprite.org/privacy/">Privacy</a> <span>|</span>
+<a href="https://www.aseprite.org/support/">Support</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    </div> <!-- /#footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+
+
+<script>
+$(function(){
+
+
+$('.navbar-toggle').click(function(){
+ var updateParCount = 0;
+ var updateParScroll = setInterval(function(){
+  $(window).trigger('resize').trigger('scroll');
+  updateParCount++;
+  if (updateParCount == 20) {
+   clearInterval(updateParScroll);
+  }
+ },20);
+});
+});
+</script>
+  </body>
+</html>

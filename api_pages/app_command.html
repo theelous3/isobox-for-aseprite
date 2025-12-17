@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Animated sprite editor &amp; pixel art tool">
+    <meta name="author" content="Igara Studio S.A.">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Aseprite" />
+    <meta property="og:description" content="Animated sprite editor &amp; pixel art tool" />
+    <meta property="og:image" content="https://www.aseprite.org/assets/images/og-image.png" />
+    <meta property="og:url" content="https://www.aseprite.org/" />
+
+    <title>Aseprite - Api - App_command</title>
+    <link rel="shortcut icon" href="/assets/images/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link href="/assets/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/assets/css/brands.min.css" rel="stylesheet">
+    <link href="/assets/css/solid.min.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/aseprite.css?v=32" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button>
+          <a class="navbar-brand" href="/" title="Home"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="docs-button ">
+              <a href="/docs/"><i class="sprite sprite-docs"></i>&nbsp;Docs</a></li>
+            <li><a href="https://blog.aseprite.org/"><i class="sprite sprite-blog"></i>&nbsp;Blog</a></li>
+            <li><a href="https://community.aseprite.org/"><i class="sprite sprite-community"></i>&nbsp;Community</a></li>
+            <li ><a href="/support/"><i class="sprite sprite-support"></i>&nbsp;Support</a></li>
+            <li class="buy-button">
+              <a href="/download/"><i class="sprite sprite-download"></i>&nbsp;Buy Now</a></li>
+            <li class="social-buttons">
+              <a href="https://twitter.com/aseprite" title="Twitter"><i class="fab fa-twitter-square"></i></a>
+              <a href="https://www.facebook.com/aseprite" title="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://discord.gg/Yb2CeX8" title="Discord" class="discord-button"><i class="fab fa-discord"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<div class="top-shadow"></div>
+<div id="content-wrapper">
+<div id="content">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs nav-justified">
+<li class=""><a href="/docs/">Documentation</a></li>
+<li class="active"><a href="/api/">API</a></li>
+<li class=""><a href="/faq/">FAQ</a></li>
+<li class=""><a href="/quickref/">Quick Reference</a></li>
+<li class=""><a href="/tutorial/">Tutorial</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3" style="padding-top: 2em">
+      <script type="text/javascript" src="/assets/js/search.js?v=2"></script>
+      <script type="text/javascript">
+        searchUrl = "/search/api";
+        document.addEventListener("click", onSearchDismiss);
+      </script>
+      <input id="search-terms" type="text" class="form-control" placeholder="Search documentation..." autofocus onfocus="onSearchFocus(event)" onkeydown="onSearchKeyDown(event)" oninput="onSearchInput(event)">
+      <a href="https://community.aseprite.org/t/14148" style="float:right; font-size:small; font-style:italic;">Feedback</a>
+      <ul id="search-result" class="search-result" onkeydown="onSearchResultKeyDown(event)">
+        <li><small class="text-right">press ENTER to search or ESC to cancel</small></li>
+      </ul>
+      <h3 id="table-of-content">Table of content<a href="#table-of-content" class="section_anchor"></a></h3>
+<p><a href="/./api">Overview</a> <br>
+<a href="/./api/Changes">API Changes</a></p>
+<p>Globals namespaces</p>
+<ul>
+<li><a href="/./api/app#app">app</a></li>
+<li><a href="/./api/app_clipboard#appclipboard">app.clipboard</a></li>
+<li><a href="/./api/app_command#appcommand">app.command</a></li>
+<li><a href="/./api/app_fs#appfs">app.fs</a></li>
+<li><a href="/./api/app_os#appos">app.os</a></li>
+<li><a href="/./api/pixelcolor#apppixelcolor">app.pixelColor</a></li>
+<li><a href="/./api/app_theme#apptheme">app.theme</a></li>
+<li><a href="/./api/json#json">json</a></li>
+</ul>
+<p>Constants</p>
+<ul>
+<li><a href="/./api/align#align">Align</a></li>
+<li><a href="/./api/anidir#anidir">AniDir</a></li>
+<li><a href="/./api/blendmode#blendmode">BlendMode</a></li>
+<li><a href="/./api/brushpattern#brushpattern">BrushPattern</a></li>
+<li><a href="/./api/brushtype#brushtype">BrushType</a></li>
+<li><a href="/./api/colormode#colormode">ColorMode</a></li>
+<li><a href="/./api/filterchannels#filterchannel">FilterChannels</a></li>
+<li><a href="/./api/fliptype#fliptype">FlipType</a></li>
+<li><a href="/./api/ink#ink">Ink</a></li>
+<li><a href="/./api/mousebutton#mousebutton">MouseButton</a></li>
+<li><a href="/./api/mousecursor#mousecursor">MouseCursor</a></li>
+<li><a href="/./api/rangetype#rangetype">RangeType</a></li>
+<li><a href="/./api/selectionmode#selectionmode">SelectionMode</a></li>
+<li><a href="/./api/spritesheetdataformat#spritesheetdataformat">SpriteSheetDataFormat</a></li>
+<li><a href="/./api/spritesheettype#spritesheettype">SpriteSheetType</a></li>
+<li><a href="/./api/tilemapmode#tilemapmode">TilemapMode</a></li>
+<li><a href="/./api/tilesetmode#tilesetmode">TilesetMode</a></li>
+<li><a href="/./api/websocketmessagetype#websocketmessagetype">WebSocketMessageType</a></li>
+</ul>
+<p>Classes/objects</p>
+<ul>
+<li><a href="/./api/brush#brush">Brush</a></li>
+<li><a href="/./api/cel#cel">Cel</a></li>
+<li><a href="/./api/color#color">Color</a></li>
+<li><a href="/./api/colorspace#colorspace">ColorSpace</a></li>
+<li><a href="/./api/dialog#dialog">Dialog</a></li>
+<li><a href="/./api/editor#editor">Editor</a></li>
+<li><a href="/./api/events#events">Events</a></li>
+<li><a href="/./api/frame#frame">Frame</a></li>
+<li><a href="/./api/graphicscontext#graphicscontext">GraphicsContext</a></li>
+<li><a href="/./api/grid#grid">Grid</a></li>
+<li><a href="/./api/image#image">Image</a></li>
+<li><a href="/./api/imagespec#imagespec">ImageSpec</a></li>
+<li><a href="/./api/keyevent#keyevent">KeyEvent</a></li>
+<li><a href="/./api/layer#layer">Layer</a></li>
+<li><a href="/./api/mouseevent#mouseevent">MouseEvent</a></li>
+<li><a href="/./api/palette#palette">Palette</a></li>
+<li><a href="/./api/plugin#plugin">Plugin</a></li>
+<li><a href="/./api/point#point">Point</a></li>
+<li><a href="/./api/properties#properties">Properties</a></li>
+<li><a href="/./api/range#range">Range</a></li>
+<li><a href="/./api/rectangle#rectangle">Rectangle</a></li>
+<li><a href="/./api/selection#selection">Selection</a></li>
+<li><a href="/./api/site#site">Site</a></li>
+<li><a href="/./api/size#size">Size</a></li>
+<li><a href="/./api/slice#slice">Slice</a></li>
+<li><a href="/./api/sprite#sprite">Sprite</a></li>
+<li><a href="/./api/tag#tag">Tag</a></li>
+<li><a href="/./api/tile#tile">Tile</a></li>
+<li><a href="/./api/tileset#tileset">Tileset</a></li>
+<li><a href="/./api/timer#timer">Timer</a></li>
+<li><a href="/./api/tool#tool">Tool</a></li>
+<li><a href="/./api/touchevent#touchevent">TouchEvent</a></li>
+<li><a href="/./api/version#version">Version</a></li>
+<li><a href="/./api/uuid#uuid">Uuid</a></li>
+<li><a href="/./api/websocket#websocket">WebSocket</a></li>
+<li><a href="/./api/window#window">Window</a></li>
+</ul>
+      <hr>
+      <p><em><a href="https://github.com/aseprite/api/edit/main/api/app_command.md">Edit page</a></em></p>
+    </div>
+    <div id="doc_content" class="col-md-9">
+      <h1 id="appcommand">app.command<a href="#appcommand" class="section_anchor"></a></h1>
+<pre><code class="language-lua">app.command.CommandName()
+app.command.CommandName { param1=value1, param2=value2, ... }
+</code></pre>
+<p>Executes the given command named <code>CommandName</code> with the specified parameters.</p>
+<ul>
+<li>app.command.About <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>Opens the About Aseprite window</li>
+<li><a href="/api/command/AddColor#addcolor" title="Adds a new color to the palette.">app.command.AddColor</a></li>
+<li>app.command.AdvancedMode <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Toggles the application's "Advanced Mode"</li>
+</ul>
+</li>
+<li><a href="/api/command/AutocropSprite#autocropsprite">app.command.AutocropSprite</a></li>
+<li>app.command.BackgroundFromLayer
+<ul>
+<li>Equivalent to using Convert To -&gt; Background in the Layer's context menu</li>
+</ul>
+</li>
+<li><a href="/api/command/BrightnessContrast#brightnesscontrast">app.command.BrightnessContrast</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.Cancel
+<ul>
+<li>Equivalent to pressing the Esc key</li>
+</ul>
+</li>
+<li><a href="/api/command/CanvasSize#canvassize">app.command.CanvasSize</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li><a href="/api/command/CelOpacity#celopacity" title="Changes the opacity of the active Cel">app.command.CelOpacity</a></li>
+<li>app.command.CelProperties <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Shows the Properties dialog for the active Cel</li>
+</ul>
+</li>
+<li><a href="/api/command/ChangeBrush#changebrush" title="Changes the brush of the active tool">app.command.ChangeBrush</a> <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li><a href="/api/command/ChangeColor#changecolor" title="Changes the current foreground or background color">app.command.ChangeColor</a> <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li><a href="/api/command/ChangePixelFormat#changepixelformat">app.command.ChangePixelFormat</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.Clear
+<ul>
+<li>Clear the current active document</li>
+</ul>
+</li>
+<li>app.command.ClearCel
+<ul>
+<li>Clear the active cel in unlocked layers</li>
+</ul>
+</li>
+<li>app.command.ClearRecentFiles
+<ul>
+<li>Clear the recent files list</li>
+</ul>
+</li>
+<li>app.command.CloseAllFiles <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Close all open files</li>
+</ul>
+</li>
+<li>app.command.CloseFile <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Close the active file</li>
+</ul>
+</li>
+<li><a href="/api/command/ColorCurve#colorcurve">app.command.ColorCurve</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li><a href="/api/command/ColorQuantization#colorquantization" title="Creates a palette from the current sprite">app.command.ColorQuantization</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.ContiguousFill
+<ul>
+<li>Changes the current tool to Contiguous Fill</li>
+</ul>
+</li>
+<li><a href="/api/command/ConvolutionMatrix#convolutionmatrix" title="Select and apply a convolution matrix to the image">app.command.ConvolutionMatrix</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li><a href="/api/command/CopyColors#copycolors">app.command.CopyColors</a></li>
+<li>app.command.CopyMerged
+<ul>
+<li>Copies the active sprite as a merged image to the clipboard</li>
+</ul>
+</li>
+<li>app.command.Copy
+<ul>
+<li>Performs a copy command on the current selection</li>
+</ul>
+</li>
+<li><a href="/api/command/CropSprite#cropsprite">app.command.CropSprite</a></li>
+<li>app.command.Cut
+<ul>
+<li>Performs a cut command on the current selection</li>
+</ul>
+</li>
+<li>app.command.DeselectMask
+<ul>
+<li>Deselects the current mask</li>
+</ul>
+</li>
+<li><a href="/api/command/Despeckle#despeckle" title="Applies median blur">app.command.Despeckle</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.DeveloperConsole <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Opens the developer console (experimental)</li>
+</ul>
+</li>
+<li>app.command.DiscardBrush <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Discard the active brush</li>
+</ul>
+</li>
+<li>app.command.DuplicateLayer
+<ul>
+<li>Duplicate the currently selected layer</li>
+</ul>
+</li>
+<li><a href="/api/command/DuplicateSprite#duplicatesprite">app.command.DuplicateSprite</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.DuplicateView <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Duplicates the current workspace view</li>
+</ul>
+</li>
+<li>app.command.Exit <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Instructs Aseprite to exit, the user will be prompted to save if any files are modified and it can be canceled</li>
+</ul>
+</li>
+<li><a href="/api/command/ExportSpriteSheet#exportspritesheet">app.command.ExportSpriteSheet</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li><a href="/api/command/ExportTileset#exporttileset">app.command.ExportTileset</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.Eyedropper
+<ul>
+<li>Grabs the color under the current mouse position with the Eyedropper tool</li>
+</ul>
+</li>
+<li>app.command.Fill
+<ul>
+<li>Performs a foreground color fill on the current selection mask</li>
+</ul>
+</li>
+<li>app.command.FitScreen <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Resets the zoom on the current view to fit the screen</li>
+</ul>
+</li>
+<li><a href="/api/command/FlattenLayers#flattenlayers">app.command.FlattenLayers</a></li>
+<li><a href="/api/command/Flip#flip">app.command.Flip</a></li>
+<li><a href="/api/command/FrameProperties#frameproperties">app.command.FrameProperties</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li><a href="/api/command/FrameTagProperties#frametagproperties">app.command.FrameTagProperties</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.FullscreenPreview <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Opens the full screen preview</li>
+</ul>
+</li>
+<li>app.command.GotoFirstFrameInTag <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GotoFirstFrame <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GotoFrame <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GotoLastFrameInTag <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GotoLastFrame <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GotoNextFrameWithSameTag <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GotoNextFrame <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GotoNextLayer <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GotoNextTab <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GotoPreviousFrameWithSameTag <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GotoPreviousFrame <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GotoPreviousLayer <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GotoPreviousTab <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.GridSettings <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Opens the grid settings window</li>
+</ul>
+</li>
+<li>app.command.Home <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Opens the Home tab</li>
+</ul>
+</li>
+<li><a href="/api/command/HueSaturation#huesaturation">app.command.HueSaturation</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li><a href="/api/command/ImportSpriteSheet#importspritesheet">app.command.ImportSpriteSheet</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li><a href="/api/command/InvertColor#invertcolor">app.command.InvertColor</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.InvertMask
+<ul>
+<li>Inverts the current selection mask, or if there is none, selects all</li>
+</ul>
+</li>
+<li>app.command.KeyboardShortcuts <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Opens the keyboard shortcut menu, use the <code>search</code> parameter to pre-fill the searchbar</li>
+</ul>
+</li>
+<li>app.command.Launch
+<ul>
+<li>Opens the given <code>path</code> in the desktop web browser as relative path to aseprite.org or a full URL</li>
+</ul>
+</li>
+<li>app.command.LayerFromBackground
+<ul>
+<li>Converts the active background layer to a regular layer</li>
+</ul>
+</li>
+<li>app.command.LayerLock
+<ul>
+<li>Toggles the lock of active layers</li>
+</ul>
+</li>
+<li><a href="/api/command/LayerOpacity#layeropacity">app.command.LayerOpacity</a></li>
+<li>app.command.LayerProperties <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Opens the Layer property window for the active layer</li>
+</ul>
+</li>
+<li>app.command.LayerVisibility
+<ul>
+<li>Toggles the visibility of the active layer</li>
+</ul>
+</li>
+<li>app.command.LinkCels
+<ul>
+<li>Links the selected cels together</li>
+</ul>
+</li>
+<li><a href="/api/command/LoadMask#loadmask" title="Loads a selection from file">app.command.LoadMask</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li><a href="/api/command/LoadPalette#loadpalette" title="Loads a palette from file">app.command.LoadPalette</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.MaskAll
+<ul>
+<li>Selects all</li>
+</ul>
+</li>
+<li><a href="/api/command/MaskByColor#maskbycolor" title="Creates a new selection by color">app.command.MaskByColor</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.MaskContent
+<ul>
+<li>Selects the content from the active sprite (like autocrop)</li>
+</ul>
+</li>
+<li>app.command.MergeDownLayer
+<ul>
+<li>Merges the active layer down</li>
+</ul>
+</li>
+<li><a href="/api/command/ModifySelection#modifyselection">app.command.ModifySelection</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.MoveCel <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Finishes the move operation of a cel in the timeline</li>
+</ul>
+</li>
+<li><a href="/api/command/MoveColors#movecolors">app.command.MoveColors</a></li>
+<li><a href="/api/command/MoveMask#movemask" title="Moves the selection boundaries or its content (pixels).">app.command.MoveMask</a></li>
+<li>app.command.NewBrush <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Create a new brush from the current selection/editor</li>
+</ul>
+</li>
+<li><a href="/api/command/NewFile#newfile">app.command.NewFile</a></li>
+<li>app.command.NewFrameTag <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Shows the New Tag dialog for the selected frame range</li>
+</ul>
+</li>
+<li><a href="/api/command/NewFrame#newframe">app.command.NewFrame</a></li>
+<li><a href="/api/command/NewLayer#newlayer">app.command.NewLayer</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.NewSpriteFromSelection
+<ul>
+<li>Creates a new sprite from the current selection mask</li>
+</ul>
+</li>
+<li>app.command.OpenBrowser <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Open the given <code>filename</code> in the internal text browser</li>
+</ul>
+</li>
+<li><a href="/api/command/OpenFile#openfile">app.command.OpenFile</a></li>
+<li>app.command.OpenGroup
+<ul>
+<li>Opens the active layer group</li>
+</ul>
+</li>
+<li>app.command.OpenInFolder
+<ul>
+<li>Opens the folder of the active sprite in the file explorer</li>
+</ul>
+</li>
+<li>app.command.OpenScriptFolder
+<ul>
+<li>Opens the Aseprite script folder in the file explorer</li>
+</ul>
+</li>
+<li>app.command.OpenWithApp
+<ul>
+<li>Opens the active sprite with the native app assigned to the format</li>
+</ul>
+</li>
+<li><a href="/api/command/Options#options">app.command.Options</a> <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li><a href="/api/command/Outline#outline">app.command.Outline</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.PaletteEditor <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Show the palette editor popup</li>
+</ul>
+</li>
+<li><a href="/api/command/PaletteSize#palettesize" title="Changes the palette size">app.command.PaletteSize</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.PasteText <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Opens the Insert Text dialog</li>
+</ul>
+</li>
+<li>app.command.Paste
+<ul>
+<li>Pastes the clipboard into the current active sprite/selection, at coordinates <code>x</code> and <code>y</code> (if given)</li>
+</ul>
+</li>
+<li>app.command.PixelPerfectMode
+<ul>
+<li>Toggles the "pixel perfect" freehand algorithm</li>
+</ul>
+</li>
+<li>app.command.PlayAnimation <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Plays the sprite's animation, if any</li>
+</ul>
+</li>
+<li>app.command.PlayPreviewAnimation <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Plays the animation in the preview window (enables it if it's not visible)</li>
+</ul>
+</li>
+<li>app.command.Redo
+<ul>
+<li>Equivalent to <code>app.redo()</code></li>
+</ul>
+</li>
+<li>app.command.Refresh <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Refreshes the user interface</li>
+</ul>
+</li>
+<li>app.command.RemoveFrameTag
+<ul>
+<li>Remove a tag by the given <code>name</code> or object <code>id</code></li>
+</ul>
+</li>
+<li>app.command.RemoveFrame
+<ul>
+<li>Remove the selected or the current active frame(s) (only if there's more 1 frame total)</li>
+</ul>
+</li>
+<li>app.command.RemoveLayer
+<ul>
+<li>Remove the selected or current active layer(s) (only if there's more than 1 layer total)</li>
+</ul>
+</li>
+<li>app.command.RemoveSlice
+<ul>
+<li>Remove a slice by <code>name</code> or object <code>id</code></li>
+</ul>
+</li>
+<li>app.command.RepeatLastExport <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup>
+<ul>
+<li>Redoes the last export command</li>
+</ul>
+</li>
+<li><a href="/api/command/ReplaceColor#replacecolor">app.command.ReplaceColor</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.ReselectMask
+<ul>
+<li>Re-selects a hidden selection mask</li>
+</ul>
+</li>
+<li>app.command.ReverseFrames
+<ul>
+<li>Reverses frames (only if there are 2 or more in the selected range)</li>
+</ul>
+</li>
+<li><a href="/api/command/Rotate#rotate">app.command.Rotate</a></li>
+<li>app.command.RunScript
+<ul>
+<li>Run a script given by the <code>filename</code> parameter - any other parameters are passed to the script.</li>
+</ul>
+</li>
+<li><a href="/api/command/SaveFile#savefile">app.command.SaveFile</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li><a href="/api/command/SaveFile#savefileas">app.command.SaveFileAs</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li><a href="/api/command/SaveFile#savefile">app.command.SaveFileCopyAs</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li><a href="/api/command/SaveMask#savemask">app.command.SaveMask</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li><a href="/api/command/SavePalette#savepalette">app.command.SavePalette</a> <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup></li>
+<li>app.command.ScrollCenter <sup><a href="#canHaveUI" title="Can have UI interaction">[*]</a></sup>
+<ul>
+<li>Center the editor viewport</li>
+</ul>
+</li>
+<li><a href="/api/command/Scroll#scroll">app.command.Scroll</a> <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li>app.command.SelectTile <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Select the tile under the mouse, with a selection <code>mode</code> (<a href="/api/selectionmode">SelectionMode</a>)</li>
+</ul>
+</li>
+<li>app.command.SelectionAsGrid
+<ul>
+<li>Set the grid bounds to the current selection mask</li>
+</ul>
+</li>
+<li>app.command.SetColorSelector <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Changes the color selector to the <code>type</code>: <code>"spectrum"</code>, <code>"tint-shade-tone"</code>, <code>"rgb-wheel"</code>, <code>"ryb-wheel"</code> or <code>"normal-map-wheel"</code></li>
+</ul>
+</li>
+<li><a href="/api/command/SetInkType">app.command.SetInkType</a> <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+<li><a href="/api/command/SetLoopSection" title="Sets the looping property of the given frame range">app.command.SetLoopSection</a></li>
+<li>app.command.SetPaletteEntrySize <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Set the palette entry size to the given <code>size</code> (defaults to <code>7</code>)</li>
+</ul>
+</li>
+<li>app.command.SetSameInk
+<ul>
+<li>Set the same ink for all tools</li>
+</ul>
+</li>
+<li>app.command.ShowAutoGuides
+<ul>
+<li>Toggles the "Show Auto Guides" preference</li>
+</ul>
+</li>
+<li>app.command.ShowBrushPreview
+<ul>
+<li>Toggles the "Brush Preview" preference</li>
+</ul>
+</li>
+<li>app.command.ShowExtras
+<ul>
+<li>Toggles the "Show Extras" preference</li>
+</ul>
+</li>
+<li>app.command.ShowGrid
+<ul>
+<li>Toggles the "Show Grid" preference</li>
+</ul>
+</li>
+<li>app.command.ShowLayerEdges
+<ul>
+<li>Toggles the "Show Layer Edges" preference</li>
+</ul>
+</li>
+<li>app.command.ShowOnionSkin
+<ul>
+<li>Toggles the "Onion Skin" preference</li>
+</ul>
+</li>
+<li>app.command.ShowPixelGrid
+<ul>
+<li>Toggles the "Show Pixel Grid"  preference</li>
+</ul>
+</li>
+<li>app.command.ShowSelectionEdges
+<ul>
+<li>Toggles the "Show Selection Edges" preference</li>
+</ul>
+</li>
+<li>app.command.ShowSlices
+<ul>
+<li>Toggles the "Show Slices" preference</li>
+</ul>
+</li>
+<li>app.command.SliceProperties <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Shows the slice properties window by <code>name</code> or <code>id</code> parameters, otherwise uses the selected slice(s)</li>
+</ul>
+</li>
+<li>app.command.SnapToGrid
+<ul>
+<li>Toggles the snap to grid property</li>
+</ul>
+</li>
+<li>app.command.SpriteProperties
+<ul>
+<li>Shows the sprite properties window</li>
+</ul>
+</li>
+<li><a href="/api/command/SpriteSize#spritesize">app.command.SpriteSize</a></li>
+<li>app.command.Stroke
+<ul>
+<li>Performs a foreground color stroke fill on the current selection mask</li>
+</ul>
+</li>
+<li>app.command.SwitchColors <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Swaps the current foreground/background colors around</li>
+</ul>
+</li>
+<li>app.command.SymmetryMode
+<ul>
+<li>Sets the symmetry mode <code>orientation</code> to one of <code>"vertical"</code>, <code>"horizontal"</code>, <code>"right_diagonal"</code> or <code>"left_diagonal"</code>. Defaults to none, which turns the mode off</li>
+</ul>
+</li>
+<li>app.command.TiledMode
+<ul>
+<li>Sets the tiled to mode <code>axis</code> to one of <code>"both"</code>, <code>"x"</code> or <code>"y"</code>. Defaults to none, which turns the mode off</li>
+</ul>
+</li>
+<li>app.command.Timeline <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Changes the timeline visibility with the parameters <code>open</code>, <code>close</code> and <code>switch</code></li>
+</ul>
+</li>
+<li>app.command.TogglePreview <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup>
+<ul>
+<li>Toggles the visibility of the preview window</li>
+</ul>
+</li>
+<li>app.command.ToggleTimelineThumbnails
+<ul>
+<li>Toggles the timeline thumbnails preference</li>
+</ul>
+</li>
+<li>app.command.UndoHistory
+<ul>
+<li>Shows the undo history window</li>
+</ul>
+</li>
+<li>app.command.Undo</li>
+<li>app.command.UnlinkCel
+<ul>
+<li>Equivalent to <code>app.undo()</code></li>
+</ul>
+</li>
+<li><a href="/api/command/Zoom#zoom" title="Changes the zoom on the active editor">app.command.Zoom</a> <sup><a href="#requiresUI" title="Requires UI">[UI]</a></sup></li>
+</ul>
+<h2 id="annotations">Annotations<a href="#annotations" class="section_anchor"></a></h2>
+<p><a name="canHaveUI" href=""></a></p>
+<blockquote>
+<p><strong>[*]</strong> - Can have UI interactions, controlled by the <code>ui</code> parameter.</p>
+</blockquote>
+<p><a name="requiresUI" href=""></a></p>
+<blockquote>
+<p><strong>[UI]</strong> - Requires the UI to be present, cannot be used in --batch mode.</p>
+</blockquote>
+<h2 id="error-handling">Error Handling<a href="#error-handling" class="section_anchor"></a></h2>
+<p>If the command fails to run or is disabled, it will return <code>false</code>.
+To check if a command is enabled and can be run, you can use <code>app.command.[COMMAND NAME].enabled</code> before calling it.</p>
+<h2 id="source">Source<a href="#source" class="section_anchor"></a></h2>
+<p>If you cannot find a specific command, you might like to take a look at the
+<a href="https://github.com/aseprite/aseprite/blob/main/data/gui.xml">gui.xml</a>
+file which contains the definitions of menus / commands + the parameters.</p>
+<p>To figure out the parameters of an undocumented command, you can:</p>
+<ol>
+<li>Choose a command (the <code>CommandName</code> part of <code>app.command.CommandName</code>) from
+<a href="https://github.com/aseprite/aseprite/blob/main/data/gui.xml">gui.xml</a> file
+( <code>&lt;key command="CommandName" ...&gt;</code> or <code>&lt;item command="CommandName" ...&gt;</code>)</li>
+<li>If those <code>&lt;key&gt;...&lt;/key&gt;</code> or <code>&lt;item&gt;...&lt;/item&gt;</code> XML elements contain children elements
+like <code>&lt;param name="param-name1" value="param-value2" /&gt;</code>
+you can specify those parameters in Lua between <code>{ ... }</code>, for example:
+<pre><code class="language-lua">app.command.CommandName { ["param-name1"]="param-value1", ["param-name2"]="param-value2" }
+</code></pre>
+</li>
+</ol>
+<p>Another alternative is looking to the Aseprite source code:</p>
+<ol>
+<li>Choose the command you want to use and find its counterpart <code>.cpp</code> file
+in <a href="https://github.com/aseprite/aseprite/tree/main/src/app/commands">src/app/commands/</a>
+(e.g. <code>app.command.CropSprite</code> has the file <code>cmd_crop.cpp</code>)</li>
+<li>Find all places in the file where <code>params.get</code> is used, the strings
+in that function are the parameter names you need to use.</li>
+<li>When setting the parameters, you'll want to write the parameters as
+below because Lua does not accept hyphens in identifiers.
+<pre><code class="language-lua">app.command.CommandName { ["parameter-name"]="value", ["other-parameter-name"]="otherValue" }
+</code></pre>
+</li>
+</ol>
+    </div>
+      </div>
+</div>
+</div>
+</div>
+    <div class="film-decorator"></div>
+    <div id="footer">
+    <div class="container">
+
+      <div class="row">
+		<div class="col-xs-offset-0 col-xs-6 col-sm-offset-0 col-sm-4 col-md-offset-1 col-md-2">
+		  <h4>Links</h4>
+		  <ul>
+			<li><a href="/">Home</a>
+			<li><a href="https://github.com/aseprite/aseprite/issues">Known Issues</a>
+			<li><a href="https://github.com/aseprite/aseprite/issues/new">Bug Report</a>
+			<li><a href="/contributors/">Contributors</a>
+			<li><a href="/donate/">Donations</a>
+		  </ul>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-md-2">
+		  <h4>Community</h4>
+		  <ul>
+			<li><a href="https://community.aseprite.org/"><i class="fab fa-discourse"></i> Aseprite Community</a>
+			<li><a href="https://discord.gg/Yb2CeX8"><i class="fab fa-discord"></i> Discord Server</a>
+			<li><a href="https://steamcommunity.com/app/431730"><i class="fab fa-steam"></i> Steam Community</a>
+			<li><a href="https://www.reddit.com/r/aseprite/"><i class="fab fa-reddit"></i> /r/aseprite</a>
+		  </ul>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-md-2">
+		  <h4>Documentation</h4>
+		  <ul>
+			<li><a href="/quickref/">Quick reference</a>
+			<li><a href="/docs/">Docs</a> - <a href="/faq/">FAQ</a>
+			<li><a href="/tutorial/">Tutorial</a>
+			<li><a href="http://blog.aseprite.org/">Blog</a></li>
+		  </ul>
+		</div>
+		<div class="col-xs-offset-0 col-xs-6 col-sm-offset-3 col-sm-3 col-md-offset-0 col-md-2">
+		  <h4>Development</h4>
+		  <ul>
+			<li><a href="https://github.com/aseprite/aseprite/"><i class="fab fa-github"></i> GitHub</a></li>
+			<li><a href="https://dev.aseprite.org/">Devblog</a></li>
+			<li><a href="/roadmap/">Roadmap</a>
+			<li><a href="https://github.com/aseprite/aseprite/blob/master/CONTRIBUTING.md">Contribute</a>
+		  </ul>
+		</div>
+		<div class="col-xs-offset-4 col-xs-6 col-sm-offset-0 col-sm-3 col-md-offset-0 col-md-2">
+		  <h4>Social</h4>
+		  <ul>
+			<li><a href="https://twitter.com/aseprite/"><i class="fab fa-twitter"></i> Twitter</a>
+			<li><a href="https://mastodon.art/@aseprite" rel="me"><i class="fab fa-mastodon"></i> Mastodon</a>
+			<li><a href="https://www.facebook.com/aseprite"><i class="fab fa-facebook"></i> Facebook</a>
+			<li><a href="https://www.youtube.com/user/aseprite"><i class="fab fa-youtube"></i> YouTube</a>
+			<li><a href="https://www.instagram.com/aseprite/"><i class="fab fa-instagram"></i> Instagram</a>
+		  </ul>
+		</div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <p class="very-bottom">
+&copy; 2001&dash;2025
+<a href="https://igara.com/">Igara Studio S.A.</a> <span>|</span>
+<a href="https://www.aseprite.org/terms/">Terms of Service</a> <span>|</span>
+<a href="https://www.aseprite.org/privacy/">Privacy</a> <span>|</span>
+<a href="https://www.aseprite.org/support/">Support</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    </div> <!-- /#footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+
+
+<script>
+$(function(){
+
+
+$('.navbar-toggle').click(function(){
+ var updateParCount = 0;
+ var updateParScroll = setInterval(function(){
+  $(window).trigger('resize').trigger('scroll');
+  updateParCount++;
+  if (updateParCount == 20) {
+   clearInterval(updateParScroll);
+  }
+ },20);
+});
+});
+</script>
+  </body>
+</html>

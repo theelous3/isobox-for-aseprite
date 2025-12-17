@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Animated sprite editor &amp; pixel art tool">
+    <meta name="author" content="Igara Studio S.A.">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Aseprite" />
+    <meta property="og:description" content="Animated sprite editor &amp; pixel art tool" />
+    <meta property="og:image" content="https://www.aseprite.org/assets/images/og-image.png" />
+    <meta property="og:url" content="https://www.aseprite.org/" />
+
+    <title>Aseprite - Api - App</title>
+    <link rel="shortcut icon" href="/assets/images/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link href="/assets/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/assets/css/brands.min.css" rel="stylesheet">
+    <link href="/assets/css/solid.min.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/aseprite.css?v=32" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button>
+          <a class="navbar-brand" href="/" title="Home"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="docs-button ">
+              <a href="/docs/"><i class="sprite sprite-docs"></i>&nbsp;Docs</a></li>
+            <li><a href="https://blog.aseprite.org/"><i class="sprite sprite-blog"></i>&nbsp;Blog</a></li>
+            <li><a href="https://community.aseprite.org/"><i class="sprite sprite-community"></i>&nbsp;Community</a></li>
+            <li ><a href="/support/"><i class="sprite sprite-support"></i>&nbsp;Support</a></li>
+            <li class="buy-button">
+              <a href="/download/"><i class="sprite sprite-download"></i>&nbsp;Buy Now</a></li>
+            <li class="social-buttons">
+              <a href="https://twitter.com/aseprite" title="Twitter"><i class="fab fa-twitter-square"></i></a>
+              <a href="https://www.facebook.com/aseprite" title="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://discord.gg/Yb2CeX8" title="Discord" class="discord-button"><i class="fab fa-discord"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<div class="top-shadow"></div>
+<div id="content-wrapper">
+<div id="content">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs nav-justified">
+<li class=""><a href="/docs/">Documentation</a></li>
+<li class="active"><a href="/api/">API</a></li>
+<li class=""><a href="/faq/">FAQ</a></li>
+<li class=""><a href="/quickref/">Quick Reference</a></li>
+<li class=""><a href="/tutorial/">Tutorial</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3" style="padding-top: 2em">
+      <script type="text/javascript" src="/assets/js/search.js?v=2"></script>
+      <script type="text/javascript">
+        searchUrl = "/search/api";
+        document.addEventListener("click", onSearchDismiss);
+      </script>
+      <input id="search-terms" type="text" class="form-control" placeholder="Search documentation..." autofocus onfocus="onSearchFocus(event)" onkeydown="onSearchKeyDown(event)" oninput="onSearchInput(event)">
+      <a href="https://community.aseprite.org/t/14148" style="float:right; font-size:small; font-style:italic;">Feedback</a>
+      <ul id="search-result" class="search-result" onkeydown="onSearchResultKeyDown(event)">
+        <li><small class="text-right">press ENTER to search or ESC to cancel</small></li>
+      </ul>
+      <h3 id="table-of-content">Table of content<a href="#table-of-content" class="section_anchor"></a></h3>
+<p><a href="/./api">Overview</a> <br>
+<a href="/./api/Changes">API Changes</a></p>
+<p>Globals namespaces</p>
+<ul>
+<li><a href="/./api/app#app">app</a></li>
+<li><a href="/./api/app_clipboard#appclipboard">app.clipboard</a></li>
+<li><a href="/./api/app_command#appcommand">app.command</a></li>
+<li><a href="/./api/app_fs#appfs">app.fs</a></li>
+<li><a href="/./api/app_os#appos">app.os</a></li>
+<li><a href="/./api/pixelcolor#apppixelcolor">app.pixelColor</a></li>
+<li><a href="/./api/app_theme#apptheme">app.theme</a></li>
+<li><a href="/./api/json#json">json</a></li>
+</ul>
+<p>Constants</p>
+<ul>
+<li><a href="/./api/align#align">Align</a></li>
+<li><a href="/./api/anidir#anidir">AniDir</a></li>
+<li><a href="/./api/blendmode#blendmode">BlendMode</a></li>
+<li><a href="/./api/brushpattern#brushpattern">BrushPattern</a></li>
+<li><a href="/./api/brushtype#brushtype">BrushType</a></li>
+<li><a href="/./api/colormode#colormode">ColorMode</a></li>
+<li><a href="/./api/filterchannels#filterchannel">FilterChannels</a></li>
+<li><a href="/./api/fliptype#fliptype">FlipType</a></li>
+<li><a href="/./api/ink#ink">Ink</a></li>
+<li><a href="/./api/mousebutton#mousebutton">MouseButton</a></li>
+<li><a href="/./api/mousecursor#mousecursor">MouseCursor</a></li>
+<li><a href="/./api/rangetype#rangetype">RangeType</a></li>
+<li><a href="/./api/selectionmode#selectionmode">SelectionMode</a></li>
+<li><a href="/./api/spritesheetdataformat#spritesheetdataformat">SpriteSheetDataFormat</a></li>
+<li><a href="/./api/spritesheettype#spritesheettype">SpriteSheetType</a></li>
+<li><a href="/./api/tilemapmode#tilemapmode">TilemapMode</a></li>
+<li><a href="/./api/tilesetmode#tilesetmode">TilesetMode</a></li>
+<li><a href="/./api/websocketmessagetype#websocketmessagetype">WebSocketMessageType</a></li>
+</ul>
+<p>Classes/objects</p>
+<ul>
+<li><a href="/./api/brush#brush">Brush</a></li>
+<li><a href="/./api/cel#cel">Cel</a></li>
+<li><a href="/./api/color#color">Color</a></li>
+<li><a href="/./api/colorspace#colorspace">ColorSpace</a></li>
+<li><a href="/./api/dialog#dialog">Dialog</a></li>
+<li><a href="/./api/editor#editor">Editor</a></li>
+<li><a href="/./api/events#events">Events</a></li>
+<li><a href="/./api/frame#frame">Frame</a></li>
+<li><a href="/./api/graphicscontext#graphicscontext">GraphicsContext</a></li>
+<li><a href="/./api/grid#grid">Grid</a></li>
+<li><a href="/./api/image#image">Image</a></li>
+<li><a href="/./api/imagespec#imagespec">ImageSpec</a></li>
+<li><a href="/./api/keyevent#keyevent">KeyEvent</a></li>
+<li><a href="/./api/layer#layer">Layer</a></li>
+<li><a href="/./api/mouseevent#mouseevent">MouseEvent</a></li>
+<li><a href="/./api/palette#palette">Palette</a></li>
+<li><a href="/./api/plugin#plugin">Plugin</a></li>
+<li><a href="/./api/point#point">Point</a></li>
+<li><a href="/./api/properties#properties">Properties</a></li>
+<li><a href="/./api/range#range">Range</a></li>
+<li><a href="/./api/rectangle#rectangle">Rectangle</a></li>
+<li><a href="/./api/selection#selection">Selection</a></li>
+<li><a href="/./api/site#site">Site</a></li>
+<li><a href="/./api/size#size">Size</a></li>
+<li><a href="/./api/slice#slice">Slice</a></li>
+<li><a href="/./api/sprite#sprite">Sprite</a></li>
+<li><a href="/./api/tag#tag">Tag</a></li>
+<li><a href="/./api/tile#tile">Tile</a></li>
+<li><a href="/./api/tileset#tileset">Tileset</a></li>
+<li><a href="/./api/timer#timer">Timer</a></li>
+<li><a href="/./api/tool#tool">Tool</a></li>
+<li><a href="/./api/touchevent#touchevent">TouchEvent</a></li>
+<li><a href="/./api/version#version">Version</a></li>
+<li><a href="/./api/uuid#uuid">Uuid</a></li>
+<li><a href="/./api/websocket#websocket">WebSocket</a></li>
+<li><a href="/./api/window#window">Window</a></li>
+</ul>
+      <hr>
+      <p><em><a href="https://github.com/aseprite/api/edit/main/api/app.md">Edit page</a></em></p>
+    </div>
+    <div id="doc_content" class="col-md-9">
+      <h1 id="app">app<a href="#app" class="section_anchor"></a></h1>
+<p>The <code>app</code> global namespace.</p>
+<h2 id="appsite">app.site<a href="#appsite" class="section_anchor"></a></h2>
+<p>Active <a href="/api/site#site">site</a> (active image, layer, frame, sprite, etc.).</p>
+<h2 id="apprange">app.range<a href="#apprange" class="section_anchor"></a></h2>
+<p><a href="/api/range#range">Range</a> member represents the active selection from an objects collection. It returns a sorted list of selected frames, or cels, or layers, or colors, etc.</p>
+<h2 id="appcel">app.cel<a href="#appcel" class="section_anchor"></a></h2>
+<p>Gets or sets the active <a href="/api/cel#cel">Cel</a> object.</p>
+<h2 id="appframe">app.frame<a href="#appframe" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local frame = app.frame
+assert(frame.sprite == app.sprite)
+app.frame = app.sprite.frames[2] -- go to the second frame
+
+app.frame = 3 -- you can assign a frame number directly
+app.frame = 1 -- 1 is the first frame of the sprite
+</code></pre>
+<p>Returns a <a href="/api/frame#frame">Frame object</a> that represents the active
+frame in the focused sprite editor. You can set this property
+assigning a frame number directly to jump to another frame.</p>
+<p>To known the active frame number use <a href="/api/frame#frameframenumber"><code>app.frame.frameNumber</code></a></p>
+<h2 id="appimage">app.image<a href="#appimage" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local image = app.image
+</code></pre>
+<p>Returns the active image, an <a href="/api/image#image">Image</a> object.</p>
+<h2 id="applayer">app.layer<a href="#applayer" class="section_anchor"></a></h2>
+<p>Returns the active layer, a <a href="/api/layer#layer">Layer</a> object.</p>
+<h2 id="appsprite">app.sprite<a href="#appsprite" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local sprite = app.sprite
+</code></pre>
+<p>Returns the active sprite, a <a href="/api/sprite#sprite">Sprite</a> object.</p>
+<h2 id="apptag">app.tag<a href="#apptag" class="section_anchor"></a></h2>
+<p>Returns the active <a href="/api/tag#tag">tag</a>, which is the tag located at the
+<a href="#appframe">active frame</a>.</p>
+<h2 id="apptool">app.tool<a href="#apptool" class="section_anchor"></a></h2>
+<p>Returns the active tool (a <a href="/api/tool#tool">Tool</a> object) selected in
+the <a href="/docs/workspace/">tool bar</a>.</p>
+<h2 id="appbrush">app.brush<a href="#appbrush" class="section_anchor"></a></h2>
+<p>Returns the active brush (a <a href="/api/brush#brush">Brush</a> object) selected
+in the <a href="/docs/workspace/">context bar</a>.</p>
+<h2 id="appeditor">app.editor<a href="#appeditor" class="section_anchor"></a></h2>
+<p>Returns the active editor (a <a href="/api/editor#editor">Editor</a> object).</p>
+<h2 id="appwindow">app.window<a href="#appwindow" class="section_anchor"></a></h2>
+<p>Returns the main window (a <a href="/api/window#window">Window</a> object).</p>
+<h2 id="apppixelcolor">app.pixelColor<a href="#apppixelcolor" class="section_anchor"></a></h2>
+<p>This <a href="/api/pixelcolor#apppixelcolor">pixelColor namespace</a> contains internal functions
+to handle color at the lowest level.</p>
+<h2 id="appversion">app.version<a href="#appversion" class="section_anchor"></a></h2>
+<p>Returns the Aseprite version number as a <a href="/api/version#version"><code>Version</code></a> object (e.g. <code>Version("1.2.10-beta1")</code>).</p>
+<h2 id="appapiversion">app.apiVersion<a href="#appapiversion" class="section_anchor"></a></h2>
+<p>Returns the API version. See the <a href="/api/Changes#api-changes">changes file</a> between
+version to know what offer each API version.</p>
+<h2 id="appfgcolor">app.fgColor<a href="#appfgcolor" class="section_anchor"></a></h2>
+<p>Gets or sets the current foreground <a href="/api/color#color">color</a>.</p>
+<h2 id="appbgcolor">app.bgColor<a href="#appbgcolor" class="section_anchor"></a></h2>
+<p>Gets or sets the current background <a href="/api/color#color">color</a>. Remember that
+some commands use the background color to clear the active layer.</p>
+<h2 id="appfgtile">app.fgTile<a href="#appfgtile" class="section_anchor"></a></h2>
+<p>Gets or sets the current foreground <a href="/api/tile#tile">tile</a>.</p>
+<h2 id="appbgtile">app.bgTile<a href="#appbgtile" class="section_anchor"></a></h2>
+<p>Gets or sets the current background <a href="/api/tile#tile">tile</a>.</p>
+<h2 id="appisuiavailable">app.isUIAvailable<a href="#appisuiavailable" class="section_anchor"></a></h2>
+<p>Returns true if the UI is available. E.g. if this is true you can use
+<a href="#appalert">app.alert</a> or <a href="/api/dialog#dialog">dialogs</a>. The UI is not available
+when we run in <a href="/docs/cli/#batch">--batch mode</a>.</p>
+<h2 id="appsprites">app.sprites<a href="#appsprites" class="section_anchor"></a></h2>
+<pre><code class="language-lua">for i,sprite in ipairs(app.sprites) do
+  -- do something with each sprite...
+end
+</code></pre>
+<p>Returns an array of <a href="/api/sprite#sprite">sprites</a>.</p>
+<h2 id="appparams">app.params<a href="#appparams" class="section_anchor"></a></h2>
+<p>This is a table with parameters specified as
+<a href="/docs/cli/#script-param"><code>--script-param key=value</code></a> in the
+<a href="/docs/cli/">CLI</a> or as <code>&lt;param&gt;</code> in
+<code>user.aseprite-keys</code> or
+<a href="https://github.com/aseprite/aseprite/blob/main/data/gui.xml"><code>gui.xml</code></a>
+file.</p>
+<h2 id="appclipboard">app.clipboard<a href="#appclipboard" class="section_anchor"></a></h2>
+<p>Check the <a href="/api/app_clipboard#appclipboard">app.clipboard</a> documentation.</p>
+<h2 id="appcommand">app.command<a href="#appcommand" class="section_anchor"></a></h2>
+<p>Check the <a href="/api/app_command#appcommand">app.command</a> documentation.</p>
+<h2 id="apppreferences">app.preferences<a href="#apppreferences" class="section_anchor"></a></h2>
+<p>Check the <a href="/api/app_preferences#apppreferences">app.preferences</a> documentation.</p>
+<h2 id="appfs">app.fs<a href="#appfs" class="section_anchor"></a></h2>
+<p>Check the <a href="/api/app_fs#appfs">app.fs</a> documentation.</p>
+<h2 id="apptheme">app.theme<a href="#apptheme" class="section_anchor"></a></h2>
+<p>Check the <a href="/api/app_theme#apptheme">app.theme</a> documentation.</p>
+<h2 id="appos">app.os<a href="#appos" class="section_anchor"></a></h2>
+<p>Check the <a href="/api/app_os#appos">app.os</a> documentation.</p>
+<h2 id="appuiscale">app.uiScale<a href="#appuiscale" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local scale = app.uiScale
+</code></pre>
+<p>Returns the <a href="/docs/preferences/">UI Elements Scaling</a>
+value specified in <em>Edit &gt; Preferences</em> as an scale factor (1 for 100%, 2 for 200%, etc.)</p>
+<h2 id="appdefaultpalette">app.defaultPalette<a href="#appdefaultpalette" class="section_anchor"></a></h2>
+<p>Returns the user's default palette, as a <a href="/api/palette#palette">Palette</a>.</p>
+<h2 id="appevents">app.events<a href="#appevents" class="section_anchor"></a></h2>
+<p>Returns the <a href="/api/events#events"><code>Events</code></a> object to associate functions
+that can act like listeners of specific <code>app</code> events. E.g.</p>
+<pre><code class="language-lua">app.events:on('sitechange',
+  function()
+    print('Now we are located in other sprite, layer, or frame')
+  end)
+</code></pre>
+<p>Available events for <code>app</code>:</p>
+<ul>
+<li><code>'sitechange'</code>: When the user selects other sprite, layer, or frame.</li>
+<li><code>'beforesitechange'</code>: Before the user switches to other sprite, layer, or frame.</li>
+<li><code>'fgcolorchange'</code>: When the <a href="/docs/color-bar/#foreground-color">Foreground color</a> in the color bar is changed.</li>
+<li><code>'bgcolorchange'</code>: When the <a href="/docs/color-bar/#background-color">Background color</a> in the color bar is changed.</li>
+<li><code>'beforecommand'</code>: Before executing any command in the program.</li>
+<li><code>'aftercommand'</code>: After executing any command in the program.</li>
+</ul>
+<p>The <code>'beforecommand'</code> and <code>'aftercommand'</code> events receive an <code>ev</code>
+argument with the name of the command (<code>ev.name</code>) and the params
+(<code>ev.params</code>). <code>'beforecommand'</code> includes a <code>ev.stopPropagation()</code>
+function to cancel the event, e.g. in case that you've handled the
+event in a custom way.</p>
+<p>E.g. This code catches the <em>Edit &gt; Cut</em> command and convert it to a <em>Copy</em>:</p>
+<pre><code class="language-lua">app.events:on('beforecommand',
+  function(ev)
+    if ev.name == "Cut" then
+      app.command.Copy()   -- call Copy command
+      ev.stopPropagation() -- and cancel the Cut
+    end
+  end)
+</code></pre>
+<h2 id="appalert">app.alert()<a href="#appalert" class="section_anchor"></a></h2>
+<pre><code class="language-lua">app.alert "Text"
+app.alert("Text")
+app.alert{title="Title", text="Text", buttons="OK"}
+app.alert{title="Title", text="Text", buttons={"OK", "Cancel"}}
+app.alert{title="Title", text={"Line 1", "Line 2", ...}, buttons={"Yes", "No", "Cancel", ...}}
+</code></pre>
+<p>Shows an alert message. If <code>buttons</code> are not specified, it will show a
+message box with the <code>OK</code> button only.</p>
+<p>Returns an integer with the selected button i.e. 1 if the first button
+was clicked, 2 if the second one, etc. Example:</p>
+<pre><code class="language-lua">local result = app.alert{ title="Warning",
+                          text="Save Changes?",
+                          buttons={"Yes", "No"}}
+if result == 1 then
+  app.alert "Yes was pressed"
+end
+</code></pre>
+<h2 id="apptip">app.tip()<a href="#apptip" class="section_anchor"></a></h2>
+<pre><code class="language-lua">app.tip "Text"
+app.tip("Text")
+app.tip("Text", 3.5)
+app.tip { text="Text", duration=5 }
+</code></pre>
+<p>Shows a tooltip message in the status bar. If the duration (in seconds) is not specified, it will default to <code>2</code>.
+The duration can be between <code>0.5</code> to <code>30</code> seconds.</p>
+<h2 id="appopen">app.open()<a href="#appopen" class="section_anchor"></a></h2>
+<pre><code class="language-lua">app.open(filename)
+</code></pre>
+<p>Opens a new sprite loading it from the given filename. Returns an
+instance of the <a href="/api/sprite#sprite">Sprite class</a> or <code>nil</code> if something went
+wrong.</p>
+<h2 id="appexit">app.exit()<a href="#appexit" class="section_anchor"></a></h2>
+<pre><code class="language-lua">app.exit()
+</code></pre>
+<p>Closes the application. It's like clicking <em>File &gt; Exit</em> menu option.</p>
+<h2 id="apptransaction">app.transaction()<a href="#apptransaction" class="section_anchor"></a></h2>
+<pre><code class="language-lua">app.transaction(
+  function()
+    ...
+  end)
+
+app.transaction(
+  string,
+  function()
+    ...
+  end)
+</code></pre>
+<p>Creates a new transaction so you can group several sprite
+modifications in just one undo/redo operation. If a string is given as
+first argument, that string will be used as the label of this
+undo/redo action (which can be seen in the <em>Edit &gt; Undo History</em>
+window).</p>
+<p>The given function is called inside the transaction, if the function
+fails, the whole transaction is undone (i.e. all the steps executed so
+far will be reversed). If the function successes, the transaction is
+committed and then all actions will be grouped in just one undo/redo
+operation.</p>
+<p>You can cancel/reverse/cause an explicit failure of the transaction
+calling the <code>error()</code> Lua function, e.g:</p>
+<pre><code class="language-lua">app.transaction(
+  function()
+    ...
+    if something_is_wrong then
+      error() -- this stops the function and doesn't continue with the
+              -- following lines / the actions so far will be reversed
+              -- automatically leaving the sprite intact
+    end
+    ...
+  end)
+</code></pre>
+<h2 id="apprefresh">app.refresh()<a href="#apprefresh" class="section_anchor"></a></h2>
+<pre><code class="language-lua">app.refresh()
+</code></pre>
+<p>This function is available just in case you see that your script
+updates the sprite but the screen is not showing the updated state of
+the sprite. It should not be needed, but it's here just in case that
+something is not working right on the Aseprite side.</p>
+<h2 id="appundo">app.undo()<a href="#appundo" class="section_anchor"></a></h2>
+<pre><code class="language-lua">app.undo()
+</code></pre>
+<p>Undoes the latest operation in the <a href="#appsprite"><code>active sprite</code></a>.
+It's like calling <code>app.command.Undo()</code> (the <em>Edit &gt; Undo</em>  menu option).</p>
+<h2 id="appredo">app.redo()<a href="#appredo" class="section_anchor"></a></h2>
+<pre><code class="language-lua">app.redo()
+</code></pre>
+<p>Redoes the latest undone operation in the
+<a href="#appsprite"><code>active sprite</code></a>.  It's like calling
+<code>app.command.Redo()</code> (the <em>Edit &gt; Redo</em>  menu option).</p>
+<h2 id="appusetool">app.useTool()<a href="#appusetool" class="section_anchor"></a></h2>
+<pre><code class="language-lua">app.useTool{
+  tool=string | Tool,
+  color=Color,
+  bgColor=Color,
+  brush=Brush,
+  points={ Point, Point, ... },
+  cel=Cel,
+  layer=Layer,
+  frame=Frame,
+  ink=Ink,
+  button=MouseButton.LEFT | MouseButton.RIGHT,
+  opacity=integer,
+  contiguous=boolean,
+  tolerance=integer,
+  freehandAlgorithm=0 | 1,
+  selection=SelectionMode.REPLACE | SelectionMode.ADD | SelectionMode.SUBTRACT | SelectionMode.INTERSECT,
+  tilemapMode=TilemapMode.PIXELS | TilemapMode.TILES,
+  tilesetMode=TilesetMode.MANUAL | TilesetMode.AUTO | TilesetMode.STACK,
+}
+</code></pre>
+<p>Simulates an user stroke in the canvas using the given tool.</p>
+<ul>
+<li><code>tool</code>: The tool to use. Can either be a <a href="/api/tool#tool">Tool</a> object or a string tool ID (<code>rectangular_marquee</code>,
+<code>elliptical_marquee</code>, <code>lasso</code>, <code>polygonal_lasso</code>, <code>magic_wand</code>,
+<code>pencil</code>, <code>spray</code>, <code>eraser</code>, <code>eyedropper</code>, <code>zoom</code>, <code>hand</code>, <code>move</code>,
+<code>slice</code>, <code>paint_bucket</code>, <code>gradient</code>, <code>line</code>, <code>curve</code>, <code>rectangle</code>,
+<code>filled_rectangle</code>, <code>ellipse</code>, <code>filled_ellipse</code>, <code>contour</code>,
+<code>polygon</code>, <code>blur</code>, <code>jumble</code>). Defaults to <a href="#apptool">app.tool</a>.</li>
+<li><code>color</code>: The color to draw with (foreground color), as a <a href="/api/color#color">Color</a> object. Defaults to <a href="#appfgcolor">app.fgColor</a>.</li>
+<li><code>bgColor</code>: The background color to draw with, as a <a href="/api/color#color">Color</a> object. Defaults to <a href="#appbgcolor">app.bgColor</a>.</li>
+<li><code>brush</code>: A <a href="/api/brush#brush">Brush</a> object for the tool to draw with. Defaults to the active brush.</li>
+<li><code>points</code>: An array of <a href="/api/point#point">points</a> on the sprite canvas which
+simulate the positions where a user would put their mouse to draw with
+the given tool.</li>
+<li><code>selection</code>: What to do with the selection, only for selection-like
+tools (<code>rectangular_marquee</code>, <code>magic_wand</code>, etc.). The default value
+when the <a href="#appisuiavailable">UI is enabled</a> will be
+<code>app.preferences.selection.mode</code>, in CLI mode it's
+<code>SelectionMode.REPLACE</code>.</li>
+<li>The draw location (<code>cel</code> or <code>layer</code>/<code>frame</code>) can be specified:
+<ul>
+<li><code>cel</code>: The specific <a href="/api/cel#cel">Cel</a> where we want to use the tool/draw with the tool (by default <a href="#appcel">app.cel</a>).</li>
+<li><code>layer</code>: The <a href="/api/layer#layer">Layer</a> to use the tool at (by default <a href="#applayer">app.layer</a>).</li>
+<li><code>frame</code>: The <a href="/api/frame#frame">Frame</a> to use the tool at (by default <a href="#appframe">app.frame</a>).</li>
+</ul>
+</li>
+<li><code>ink</code>: The <a href="/api/ink#ink">Ink</a> type for the tool to use.</li>
+<li><code>button</code>: The <a href="/api/mousebutton#mousebutton">MouseButton</a> to use, can either be <code>MouseButton.LEFT</code> or <code>MouseButton.RIGHT</code>. Defaults to <code>MouseButton.LEFT</code>.</li>
+<li><code>opacity</code>: The opacity of the tool stroke, as an integer between <code>0</code> and <code>255</code>. Defaults to <code>255</code>.</li>
+<li><code>tolerance</code>: The tolerance of the tool fill, as an integer between <code>0</code> and <code>255</code>. Defaults to <code>0</code>.</li>
+<li><code>contiguous</code>: Contiguous mode toggle. Defaults to <code>true</code>.</li>
+<li><code>freehandAlgorithm</code>: Changes the freehand algorithm. Can either be <code>0</code> (regular mode) or <code>1</code> (pixel-perfect mode). Defaults to <code>0</code>.</li>
+<li><code>tilemapMode</code>: The <a href="/api/tilemapmode#tilemapmode">TilemapMode</a> of the tool. Defaults to <code>TilemapMode.PIXELS</code>.</li>
+<li><code>tilesetMode</code>: The <a href="/api/tilemapmode#tilemapmode">TilesetMode</a> of the tool. Defaults to <code>TilesetMode.MANUAL</code>.</li>
+</ul>
+<h1 id="deprecated-names">Deprecated Names<a href="#deprecated-names" class="section_anchor"></a></h1>
+<p>The following fields were replaced with new alternatives (generally
+shorter) names. These will not be removed from the API, so we can
+offer backward compatibility with old scripts.</p>
+<h2 id="appactivesprite">app.activeSprite<a href="#appactivesprite" class="section_anchor"></a></h2>
+<p>Deprecated. Use <a href="#appsprite">app.sprite</a>.</p>
+<h2 id="appactivelayer">app.activeLayer<a href="#appactivelayer" class="section_anchor"></a></h2>
+<p>Deprecated. Use <a href="#applayer">app.layer</a>.</p>
+<h2 id="appactiveframe">app.activeFrame<a href="#appactiveframe" class="section_anchor"></a></h2>
+<p>Deprecated. Use <a href="#appframe">app.frame</a>.</p>
+<p><strong>WARNING</strong>: This function had two bugs
+in <a href="/release-notes/12/#aseprite-v1-2-10-beta2">Aseprite v1.2.10-beta2</a>
+where 1) it returned <code>nil</code> if we were in the first frame of the
+sprite, and 2) it returned a number. Since Aseprite v1.2.10-beta3 it
+started to return a <a href="/api/frame#frame">Frame</a> object.</p>
+<h2 id="appactivecel">app.activeCel<a href="#appactivecel" class="section_anchor"></a></h2>
+<p>Deprecated. Use <a href="#appcel">app.cel</a>.</p>
+<h2 id="appactiveimage">app.activeImage<a href="#appactiveimage" class="section_anchor"></a></h2>
+<p>Deprecated. Use <a href="#appimage">app.image</a>.</p>
+<h2 id="appactivetag">app.activeTag<a href="#appactivetag" class="section_anchor"></a></h2>
+<p>Deprecated. Use <a href="#apptag">app.tag</a>.</p>
+<h2 id="appactivetool">app.activeTool<a href="#appactivetool" class="section_anchor"></a></h2>
+<p>Deprecated. Use <a href="#apptool">app.tool</a>.</p>
+<h2 id="appactivebrush">app.activeBrush<a href="#appactivebrush" class="section_anchor"></a></h2>
+<p>Deprecated. Use <a href="#appbrush">app.brush</a>.</p>
+    </div>
+      </div>
+</div>
+</div>
+</div>
+    <div class="film-decorator"></div>
+    <div id="footer">
+    <div class="container">
+
+      <div class="row">
+		<div class="col-xs-offset-0 col-xs-6 col-sm-offset-0 col-sm-4 col-md-offset-1 col-md-2">
+		  <h4>Links</h4>
+		  <ul>
+			<li><a href="/">Home</a>
+			<li><a href="https://github.com/aseprite/aseprite/issues">Known Issues</a>
+			<li><a href="https://github.com/aseprite/aseprite/issues/new">Bug Report</a>
+			<li><a href="/contributors/">Contributors</a>
+			<li><a href="/donate/">Donations</a>
+		  </ul>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-md-2">
+		  <h4>Community</h4>
+		  <ul>
+			<li><a href="https://community.aseprite.org/"><i class="fab fa-discourse"></i> Aseprite Community</a>
+			<li><a href="https://discord.gg/Yb2CeX8"><i class="fab fa-discord"></i> Discord Server</a>
+			<li><a href="https://steamcommunity.com/app/431730"><i class="fab fa-steam"></i> Steam Community</a>
+			<li><a href="https://www.reddit.com/r/aseprite/"><i class="fab fa-reddit"></i> /r/aseprite</a>
+		  </ul>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-md-2">
+		  <h4>Documentation</h4>
+		  <ul>
+			<li><a href="/quickref/">Quick reference</a>
+			<li><a href="/docs/">Docs</a> - <a href="/faq/">FAQ</a>
+			<li><a href="/tutorial/">Tutorial</a>
+			<li><a href="http://blog.aseprite.org/">Blog</a></li>
+		  </ul>
+		</div>
+		<div class="col-xs-offset-0 col-xs-6 col-sm-offset-3 col-sm-3 col-md-offset-0 col-md-2">
+		  <h4>Development</h4>
+		  <ul>
+			<li><a href="https://github.com/aseprite/aseprite/"><i class="fab fa-github"></i> GitHub</a></li>
+			<li><a href="https://dev.aseprite.org/">Devblog</a></li>
+			<li><a href="/roadmap/">Roadmap</a>
+			<li><a href="https://github.com/aseprite/aseprite/blob/master/CONTRIBUTING.md">Contribute</a>
+		  </ul>
+		</div>
+		<div class="col-xs-offset-4 col-xs-6 col-sm-offset-0 col-sm-3 col-md-offset-0 col-md-2">
+		  <h4>Social</h4>
+		  <ul>
+			<li><a href="https://twitter.com/aseprite/"><i class="fab fa-twitter"></i> Twitter</a>
+			<li><a href="https://mastodon.art/@aseprite" rel="me"><i class="fab fa-mastodon"></i> Mastodon</a>
+			<li><a href="https://www.facebook.com/aseprite"><i class="fab fa-facebook"></i> Facebook</a>
+			<li><a href="https://www.youtube.com/user/aseprite"><i class="fab fa-youtube"></i> YouTube</a>
+			<li><a href="https://www.instagram.com/aseprite/"><i class="fab fa-instagram"></i> Instagram</a>
+		  </ul>
+		</div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <p class="very-bottom">
+&copy; 2001&dash;2025
+<a href="https://igara.com/">Igara Studio S.A.</a> <span>|</span>
+<a href="https://www.aseprite.org/terms/">Terms of Service</a> <span>|</span>
+<a href="https://www.aseprite.org/privacy/">Privacy</a> <span>|</span>
+<a href="https://www.aseprite.org/support/">Support</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    </div> <!-- /#footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+
+
+<script>
+$(function(){
+
+
+$('.navbar-toggle').click(function(){
+ var updateParCount = 0;
+ var updateParScroll = setInterval(function(){
+  $(window).trigger('resize').trigger('scroll');
+  updateParCount++;
+  if (updateParCount == 20) {
+   clearInterval(updateParScroll);
+  }
+ },20);
+});
+});
+</script>
+  </body>
+</html>

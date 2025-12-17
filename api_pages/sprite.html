@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Animated sprite editor &amp; pixel art tool">
+    <meta name="author" content="Igara Studio S.A.">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Aseprite" />
+    <meta property="og:description" content="Animated sprite editor &amp; pixel art tool" />
+    <meta property="og:image" content="https://www.aseprite.org/assets/images/og-image.png" />
+    <meta property="og:url" content="https://www.aseprite.org/" />
+
+    <title>Aseprite - Api - Sprite</title>
+    <link rel="shortcut icon" href="/assets/images/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link href="/assets/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/assets/css/brands.min.css" rel="stylesheet">
+    <link href="/assets/css/solid.min.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/aseprite.css?v=32" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button>
+          <a class="navbar-brand" href="/" title="Home"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="docs-button ">
+              <a href="/docs/"><i class="sprite sprite-docs"></i>&nbsp;Docs</a></li>
+            <li><a href="https://blog.aseprite.org/"><i class="sprite sprite-blog"></i>&nbsp;Blog</a></li>
+            <li><a href="https://community.aseprite.org/"><i class="sprite sprite-community"></i>&nbsp;Community</a></li>
+            <li ><a href="/support/"><i class="sprite sprite-support"></i>&nbsp;Support</a></li>
+            <li class="buy-button">
+              <a href="/download/"><i class="sprite sprite-download"></i>&nbsp;Buy Now</a></li>
+            <li class="social-buttons">
+              <a href="https://twitter.com/aseprite" title="Twitter"><i class="fab fa-twitter-square"></i></a>
+              <a href="https://www.facebook.com/aseprite" title="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://discord.gg/Yb2CeX8" title="Discord" class="discord-button"><i class="fab fa-discord"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<div class="top-shadow"></div>
+<div id="content-wrapper">
+<div id="content">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs nav-justified">
+<li class=""><a href="/docs/">Documentation</a></li>
+<li class="active"><a href="/api/">API</a></li>
+<li class=""><a href="/faq/">FAQ</a></li>
+<li class=""><a href="/quickref/">Quick Reference</a></li>
+<li class=""><a href="/tutorial/">Tutorial</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3" style="padding-top: 2em">
+      <script type="text/javascript" src="/assets/js/search.js?v=2"></script>
+      <script type="text/javascript">
+        searchUrl = "/search/api";
+        document.addEventListener("click", onSearchDismiss);
+      </script>
+      <input id="search-terms" type="text" class="form-control" placeholder="Search documentation..." autofocus onfocus="onSearchFocus(event)" onkeydown="onSearchKeyDown(event)" oninput="onSearchInput(event)">
+      <a href="https://community.aseprite.org/t/14148" style="float:right; font-size:small; font-style:italic;">Feedback</a>
+      <ul id="search-result" class="search-result" onkeydown="onSearchResultKeyDown(event)">
+        <li><small class="text-right">press ENTER to search or ESC to cancel</small></li>
+      </ul>
+      <h3 id="table-of-content">Table of content<a href="#table-of-content" class="section_anchor"></a></h3>
+<p><a href="/./api">Overview</a> <br>
+<a href="/./api/Changes">API Changes</a></p>
+<p>Globals namespaces</p>
+<ul>
+<li><a href="/./api/app#app">app</a></li>
+<li><a href="/./api/app_clipboard#appclipboard">app.clipboard</a></li>
+<li><a href="/./api/app_command#appcommand">app.command</a></li>
+<li><a href="/./api/app_fs#appfs">app.fs</a></li>
+<li><a href="/./api/app_os#appos">app.os</a></li>
+<li><a href="/./api/pixelcolor#apppixelcolor">app.pixelColor</a></li>
+<li><a href="/./api/app_theme#apptheme">app.theme</a></li>
+<li><a href="/./api/json#json">json</a></li>
+</ul>
+<p>Constants</p>
+<ul>
+<li><a href="/./api/align#align">Align</a></li>
+<li><a href="/./api/anidir#anidir">AniDir</a></li>
+<li><a href="/./api/blendmode#blendmode">BlendMode</a></li>
+<li><a href="/./api/brushpattern#brushpattern">BrushPattern</a></li>
+<li><a href="/./api/brushtype#brushtype">BrushType</a></li>
+<li><a href="/./api/colormode#colormode">ColorMode</a></li>
+<li><a href="/./api/filterchannels#filterchannel">FilterChannels</a></li>
+<li><a href="/./api/fliptype#fliptype">FlipType</a></li>
+<li><a href="/./api/ink#ink">Ink</a></li>
+<li><a href="/./api/mousebutton#mousebutton">MouseButton</a></li>
+<li><a href="/./api/mousecursor#mousecursor">MouseCursor</a></li>
+<li><a href="/./api/rangetype#rangetype">RangeType</a></li>
+<li><a href="/./api/selectionmode#selectionmode">SelectionMode</a></li>
+<li><a href="/./api/spritesheetdataformat#spritesheetdataformat">SpriteSheetDataFormat</a></li>
+<li><a href="/./api/spritesheettype#spritesheettype">SpriteSheetType</a></li>
+<li><a href="/./api/tilemapmode#tilemapmode">TilemapMode</a></li>
+<li><a href="/./api/tilesetmode#tilesetmode">TilesetMode</a></li>
+<li><a href="/./api/websocketmessagetype#websocketmessagetype">WebSocketMessageType</a></li>
+</ul>
+<p>Classes/objects</p>
+<ul>
+<li><a href="/./api/brush#brush">Brush</a></li>
+<li><a href="/./api/cel#cel">Cel</a></li>
+<li><a href="/./api/color#color">Color</a></li>
+<li><a href="/./api/colorspace#colorspace">ColorSpace</a></li>
+<li><a href="/./api/dialog#dialog">Dialog</a></li>
+<li><a href="/./api/editor#editor">Editor</a></li>
+<li><a href="/./api/events#events">Events</a></li>
+<li><a href="/./api/frame#frame">Frame</a></li>
+<li><a href="/./api/graphicscontext#graphicscontext">GraphicsContext</a></li>
+<li><a href="/./api/grid#grid">Grid</a></li>
+<li><a href="/./api/image#image">Image</a></li>
+<li><a href="/./api/imagespec#imagespec">ImageSpec</a></li>
+<li><a href="/./api/keyevent#keyevent">KeyEvent</a></li>
+<li><a href="/./api/layer#layer">Layer</a></li>
+<li><a href="/./api/mouseevent#mouseevent">MouseEvent</a></li>
+<li><a href="/./api/palette#palette">Palette</a></li>
+<li><a href="/./api/plugin#plugin">Plugin</a></li>
+<li><a href="/./api/point#point">Point</a></li>
+<li><a href="/./api/properties#properties">Properties</a></li>
+<li><a href="/./api/range#range">Range</a></li>
+<li><a href="/./api/rectangle#rectangle">Rectangle</a></li>
+<li><a href="/./api/selection#selection">Selection</a></li>
+<li><a href="/./api/site#site">Site</a></li>
+<li><a href="/./api/size#size">Size</a></li>
+<li><a href="/./api/slice#slice">Slice</a></li>
+<li><a href="/./api/sprite#sprite">Sprite</a></li>
+<li><a href="/./api/tag#tag">Tag</a></li>
+<li><a href="/./api/tile#tile">Tile</a></li>
+<li><a href="/./api/tileset#tileset">Tileset</a></li>
+<li><a href="/./api/timer#timer">Timer</a></li>
+<li><a href="/./api/tool#tool">Tool</a></li>
+<li><a href="/./api/touchevent#touchevent">TouchEvent</a></li>
+<li><a href="/./api/version#version">Version</a></li>
+<li><a href="/./api/uuid#uuid">Uuid</a></li>
+<li><a href="/./api/websocket#websocket">WebSocket</a></li>
+<li><a href="/./api/window#window">Window</a></li>
+</ul>
+      <hr>
+      <p><em><a href="https://github.com/aseprite/api/edit/main/api/sprite.md">Edit page</a></em></p>
+    </div>
+    <div id="doc_content" class="col-md-9">
+      <h1 id="sprite">Sprite<a href="#sprite" class="section_anchor"></a></h1>
+<h2 id="sprite">Sprite()<a href="#sprite" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local sprite = Sprite(width, height)
+local sprite = Sprite(width, height, colorMode)
+local sprite = Sprite(spec)
+local sprite = Sprite(otherSprite)
+local sprite = Sprite{ fromFile=string }
+local sprite = Sprite{ fromFile=string, oneFrame=true }
+</code></pre>
+<p>Creates a new sprite with the given <code>width</code> and <code>height</code>. The
+<a href="/api/colormode#colormode">color mode</a> is optional, <a href="/api/colormode#colormodergb">RGB</a>
+by default.</p>
+<p>The <code>spec</code> parameter is an <a href="/api/imagespec#imagespec">image specification</a> object.</p>
+<p>If <code>otherSprite</code> is given (other <code>Sprite</code> object), the sprite is duplicated.</p>
+<p>If <code>fromFile</code> is given, it indicates a file name (a string) and it's
+like opening a new document with <a href="/api/app#appopen"><code>app.open()</code></a>.</p>
+<p>When loading from a file, setting <code>oneFrame</code> to true will load with only the first animation frame.</p>
+<h2 id="spritewidth">Sprite.width<a href="#spritewidth" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local w = sprite.width
+sprite.width = w
+</code></pre>
+<p>Returns or changes the sprite width. Use
+<a href="#spriteresize">Sprite:resize</a> if you want to change the sprite size
+resizing layers, images, etc.</p>
+<h2 id="spriteheight">Sprite.height<a href="#spriteheight" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local h = sprite.height
+sprite.height = h
+</code></pre>
+<p>Returns or changes the sprite height. Use
+<a href="#spriteresize">Sprite:resize</a> if you want to change the sprite size
+resizing layers, images, etc.</p>
+<h2 id="spritebounds">Sprite.bounds<a href="#spritebounds" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local rectangle = sprite.bounds
+</code></pre>
+<p>Returns the bounds of the sprite as a
+<a href="/api/rectangle#rectangle">rectangle</a> in the position <code>0,0</code>.
+This is like calling <code>Rectangle{ x=0, y=0, width=sprite.width, height=sprite.height }</code>.</p>
+<h2 id="spritegridbounds">Sprite.gridBounds<a href="#spritegridbounds" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local rectangle = sprite.gridBounds
+sprite.gridBounds = rectangle
+</code></pre>
+<p>Gets or sets the bounds of the sprite grid as a
+<a href="/api/rectangle#rectangle">rectangle</a>. By default this is 16x16 (with origin in 0,0)
+but the default value can be <a href="/docs/preferences/">changed from <em>Edit &gt; Preferences &gt; Grid</em></a>.</p>
+<h2 id="spritepixelratio">Sprite.pixelRatio<a href="#spritepixelratio" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local size = sprite.pixelRatio
+sprite.pixelRatio = size
+</code></pre>
+<p>Gets or sets the pixel ratio of the sprite as a
+<a href="/api/size#size">size</a>.</p>
+<h2 id="spriteselection">Sprite.selection<a href="#spriteselection" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local selection = sprite.selection
+sprite.selection = newSelection
+</code></pre>
+<p>Gets or sets the active sprite selection. This property is an instance
+of the <a href="/api/selection#selection">Selection class</a> to manipulate the set of
+selected pixels in the canvas.</p>
+<p>Keep in mind that <code>local selection = sprite.selection</code> will be a reference to the Sprite's selection, and will update when the Sprite's selection is changed or removed. To clone the selection, you can do the following instead:</p>
+<pre><code class="language-lua">local selection = Selection()
+selection:add(sprite.selection)
+</code></pre>
+<h2 id="spritefilename">Sprite.filename<a href="#spritefilename" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local name = sprite.filename
+sprite.filename = newName
+</code></pre>
+<p>Gets or sets the name of the file from where this sprite was loaded or
+saved. Or an empty string if this is a new sprite without an
+associated file.</p>
+<h2 id="spriteid">Sprite.id<a href="#spriteid" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local id = sprite.id
+</code></pre>
+<p>Returns the id of this sprite, as an integer.</p>
+<h2 id="spriteismodified">Sprite.isModified<a href="#spriteismodified" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local modified = sprite.isModified
+</code></pre>
+<p>Returns true if the sprite is modified compared to the latest saved
+state on disk.</p>
+<h2 id="spritecolorspace">Sprite.colorSpace<a href="#spritecolorspace" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local colorspace = sprite.colorSpace
+sprite.colorSpace = colorspace
+</code></pre>
+<p>Gets or sets the <a href="/api/colorspace#colorspace">color space</a> of this sprite. Setting works the same as using <a href="/api/sprite#spriteassigncolorspace">Sprite:assignColorSpace()</a>.</p>
+<h2 id="spritecolormode">Sprite.colorMode<a href="#spritecolormode" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local colormode = sprite.colormode
+</code></pre>
+<p>Returns the <a href="/api/colormode#colormode">color mode</a> of this sprite.</p>
+<h2 id="spritespec">Sprite.spec<a href="#spritespec" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local spec = sprite.spec
+</code></pre>
+<p>Returns the <a href="/api/imagespec#imagespec">specification</a> for image in this sprite.</p>
+<h2 id="spriteundohistoryundosteps">Sprite.undoHistory.undoSteps<a href="#spriteundohistoryundosteps" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local undosteps = sprite.undoHistory.undoSteps
+</code></pre>
+<p>Returns the amount of undo steps (steps before the current step), as an integer.</p>
+<h2 id="spriteundohistoryredosteps">Sprite.undoHistory.redoSteps<a href="#spriteundohistoryredosteps" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local redosteps = sprite.undoHistory.redoSteps
+</code></pre>
+<p>Returns the amount of redo steps (steps after the current step), as an integer.</p>
+<h2 id="spriteframes">Sprite.frames<a href="#spriteframes" class="section_anchor"></a></h2>
+<pre><code class="language-lua">for i,frame in ipairs(s.frames) do
+  -- ...
+end
+for i = 1,#s.frames do
+  -- s.frames[i]
+end
+</code></pre>
+<p>An array of <a href="/api/frame#frame">frames</a>.</p>
+<h2 id="spritepalettes">Sprite.palettes<a href="#spritepalettes" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local palette = sprite.palettes[1]
+</code></pre>
+<p>An array of <a href="/api/palette#palette">palettes</a>. In most cases, it only contains one
+palette (<code>sprite.palettes[1]</code>), except in a very specific case.</p>
+<p>In the event that two or more <a href="/docs/color-mode#indexed">indexed</a> numbered
+files (eg. <code>spr_01.png</code>, <code>spr_02.png</code>, <code>spr_03.png</code> etc.) are
+<a href="/docs/open#loading-image-sequences">opened as a sequence</a>,
+each frame would have its own palette. This only occurs when there are
+at least two different indexed palettes, so the indexed palette for
+the <code>spr_01.png</code> frame would have different index-to-color mapping
+than the indexed palette for the <code>spr_02.png</code> (same with
+<code>spr_03.png</code>), hence the need for three sprite palettes. If two
+images/frames have the same indexed palette, they will share (so if
+<code>spr_01.png</code> and <code>spr_02.png</code> have the same palette, but <code>spr_03.png</code>
+has a different one, there would be <code>2</code> sprite palettes).</p>
+<p>There is no proper UI to support multiple palettes at the moment, but
+in a future we want to create an easy way to create
+<a href="https://en.wikipedia.org/wiki/Color_cycling">color cycling animations</a>.</p>
+<h2 id="spritelayers">Sprite.layers<a href="#spritelayers" class="section_anchor"></a></h2>
+<pre><code class="language-lua">for i,layer in ipairs(s.layers) do
+  -- ...
+end
+for i = 1,#s.layers do
+  -- s.layers[i]
+end
+</code></pre>
+<p>An array of <a href="/api/layer#layer">layers</a>.</p>
+<h2 id="spritecels">Sprite.cels<a href="#spritecels" class="section_anchor"></a></h2>
+<pre><code class="language-lua">for i,cel in ipairs(s.cels) do
+  -- ...
+end
+for i = 1,#s.cels do
+  -- s.cels[i]
+end
+</code></pre>
+<p>An array of <a href="/api/cel#cel">cels</a>.</p>
+<h2 id="spritetags">Sprite.tags<a href="#spritetags" class="section_anchor"></a></h2>
+<pre><code class="language-lua">for i,tag in ipairs(s.tags) do
+  -- ...
+end
+for i = 1,#s.tags do
+  -- s.tags[i]
+end
+</code></pre>
+<p>An array of <a href="/api/tag#tag">tags</a>.</p>
+<h2 id="spriteslices">Sprite.slices<a href="#spriteslices" class="section_anchor"></a></h2>
+<pre><code class="language-lua">for i,slice in ipairs(s.slices) do
+  -- ...
+end
+for i = 1,#s.slices do
+  -- s.slices[i]
+end
+</code></pre>
+<p>An array of <a href="/api/slice#slice">slices</a>.</p>
+<h2 id="spritetilesets">Sprite.tilesets<a href="#spritetilesets" class="section_anchor"></a></h2>
+<pre><code class="language-lua">for i,tileset in ipairs(s.tilesets) do
+  -- ...
+end
+for i = 1,#s.tilesets do
+  -- s.tilesets[i]
+end
+</code></pre>
+<p>An array of <a href="/api/tileset#tileset">tilesets</a>.</p>
+<h2 id="spritebackgroundlayer">Sprite.backgroundLayer<a href="#spritebackgroundlayer" class="section_anchor"></a></h2>
+<p>Returns the <a href="/docs/layers/#background-layer">background
+layer</a> a
+<a href="/api/layer#layer">layer</a> object or <code>nil</code> if the sprite doesn't contain a
+background layer.</p>
+<h2 id="spritetransparentcolor">Sprite.transparentColor<a href="#spritetransparentcolor" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local number = sprite.transparentColor
+sprite.transparentColor = number
+</code></pre>
+<p>The transparent color is an intenger that specifies what index (<code>0</code> by
+default) is the transparent color in transparent layers on indexed
+sprites.</p>
+<h2 id="spritecolor">Sprite.color<a href="#spritecolor" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local color = sprite.color
+sprite.color = color
+</code></pre>
+<p>Gets or sets the user-defined <a href="/api/color#color">color</a> of this sprite.
+This color is used to display the tab in the main window of this
+sprite.</p>
+<h2 id="spritedata">Sprite.data<a href="#spritedata" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local data = sprite.data
+sprite.data = data
+</code></pre>
+<p>Gets or sets the user-defined data related to this sprite (a text string).</p>
+<h2 id="spriteproperties">Sprite.properties<a href="#spriteproperties" class="section_anchor"></a></h2>
+<p>Access user-defined and extension-defined
+<a href="/api/properties#properties">properties</a> of this sprite.</p>
+<h2 id="spriteresize">Sprite:resize()<a href="#spriteresize" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:resize(width, height)
+sprite:resize(size)
+</code></pre>
+<p>Resize the sprite (and all frames/cels) to the given dimensions. See
+<a href="/api/size#size">Size class</a>.</p>
+<h2 id="spritecrop">Sprite:crop()<a href="#spritecrop" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:crop(x, y, width, height)
+sprite:crop(rectangle)
+</code></pre>
+<p>Crops the sprite to the given dimensions. See the
+<a href="/api/rectangle#rectangle">Rectangle class</a>.</p>
+<h2 id="spritesaveas">Sprite:saveAs()<a href="#spritesaveas" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:saveAs(filename)
+</code></pre>
+<p>Saves the sprite to the given file and marks the sprite as saved so
+closing it won't ask to save changes.</p>
+<h2 id="spritesavecopyas">Sprite:saveCopyAs()<a href="#spritesavecopyas" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:saveCopyAs(filename)
+</code></pre>
+<p>Saves a copy of the sprite in the given file but doesn't change the
+saved state of the sprite, if the sprite is modified and then try to
+close it, the user will be asked to save changes.</p>
+<h2 id="spriteclose">Sprite:close()<a href="#spriteclose" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:close()
+</code></pre>
+<p>Closes the sprite. This doesn't ask the user to save changes. If you
+want to do the classic <em>File &gt; Close</em> where the user is asking to save
+changes, you can use <code>app.command.CloseFile()</code>.</p>
+<h2 id="spriteloadpalette">Sprite:loadPalette()<a href="#spriteloadpalette" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:loadPalette(filename)
+</code></pre>
+<p>Sets the sprite palette loading it from the given file.</p>
+<p>The same can be achieved using <a href="/api/palette#palette"><code>Palette{ fromFile }</code></a>:</p>
+<pre><code class="language-lua">sprite:setPalette(Palette{ fromFile=filename })
+</code></pre>
+<h2 id="spritesetpalette">Sprite:setPalette()<a href="#spritesetpalette" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:setPalette(palette)
+</code></pre>
+<p>Changes the sprite <a href="/api/palette#palette">palette</a>.</p>
+<h2 id="spriteassigncolorspace">Sprite:assignColorSpace()<a href="#spriteassigncolorspace" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local colorSpace = ColorSpace{ sRGB=true }
+sprite:assignColorSpace(colorSpace)
+</code></pre>
+<p>Assign a new <a href="/api/colorspace#colorspace">color space</a> to the sprite without
+modifying the sprite pixels.</p>
+<h2 id="spriteconvertcolorspace">Sprite:convertColorSpace()<a href="#spriteconvertcolorspace" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local colorSpace = ColorSpace{ sRGB=true }
+sprite:convertColorSpace(colorSpace)
+</code></pre>
+<p>Converts all the sprite pixels to a new <a href="/api/colorspace#colorspace">color space</a>
+so the image looks the same as in the previous color space (all pixels
+will be adjusted to the new color space).</p>
+<h2 id="spritenewlayer">Sprite:newLayer()<a href="#spritenewlayer" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local layer = sprite:newLayer()
+</code></pre>
+<p>Creates a new <a href="/api/layer#layer">layer</a> at the top of the layers stack.</p>
+<h2 id="spritenewgroup">Sprite:newGroup()<a href="#spritenewgroup" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local layerGroup = sprite:newGroup()
+</code></pre>
+<p>Creates a new empty <a href="/api/layer#layer">layer group</a> at the top of the layers stack.</p>
+<h2 id="spritedeletelayer">Sprite:deleteLayer()<a href="#spritedeletelayer" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:deleteLayer(layer)
+sprite:deleteLayer(layerName)
+</code></pre>
+<p>Deletes the given <a href="/api/layer#layer">layer</a> or the layer with the given <code>layerName</code> (a string).</p>
+<h2 id="spritenewframe">Sprite:newFrame()<a href="#spritenewframe" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local frame = sprite:newFrame(frame)
+local frame = sprite:newFrame(frameNumber)
+</code></pre>
+<p>Creates a copy of the given <a href="/api/frame#frame">frame</a> object or frame number
+and returns a <a href="/api/frame#frame"><code>Frame</code></a> that points to the newly created
+frame in <code>frameNumber</code> position.</p>
+<h2 id="spritenewemptyframe">Sprite:newEmptyFrame()<a href="#spritenewemptyframe" class="section_anchor"></a></h2>
+<p>Creates a new empty frame in the given <code>frameNumber</code> (an integer) and
+returns the new <a href="/api/frame#frame">frame</a>.</p>
+<h2 id="spritedeleteframe">Sprite:deleteFrame()<a href="#spritedeleteframe" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:deleteFrame(frame)
+</code></pre>
+<h2 id="spritenewcel">Sprite:newCel()<a href="#spritenewcel" class="section_anchor"></a></h2>
+<pre><code class="language-lua">cel = sprite:newCel(layer, frame)
+cel = sprite:newCel(layer, frame, image, position)
+</code></pre>
+<p>Creates a new <a href="/api/cel#cel">cel</a> in the given <a href="/api/layer#layer">layer</a> and <code>frame</code>
+number. If the <a href="/api/image#image">image</a> is not specified, a new image will be
+created with the size of the sprite canvas. The <a href="/api/point#point">position</a>
+is a point to locate the image.</p>
+<h2 id="spritedeletecel">Sprite:deleteCel()<a href="#spritedeletecel" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:deleteCel(cel)
+sprite:deleteCel(layer, frame)
+</code></pre>
+<p>Deletes the given <a href="/api/cel#cel">cel</a>. If the cel is from a transparent
+layer, the cel is completely deleted, but if the cel is from a
+background layer, the cel will be delete with the
+<a href="/api/app#appbgcolor">background color</a>.</p>
+<h2 id="spritenewtag">Sprite:newTag()<a href="#spritenewtag" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local tag = sprite:newTag(fromFrameNumber, toFrameNumber)
+</code></pre>
+<p>Creates a new <a href="/api/tag#tag">tag</a> in the given frame range and with the given name.</p>
+<h2 id="spritedeletetag">Sprite:deleteTag()<a href="#spritedeletetag" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:deleteTag(tag)
+sprite:deleteTag(tagName)
+</code></pre>
+<p>Deletes the given <a href="/api/tag#tag">tag</a>.</p>
+<h2 id="spritenewslice">Sprite:newSlice()<a href="#spritenewslice" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local slice = sprite:newSlice()
+local slice = sprite:newSlice(Rectangle)
+</code></pre>
+<p>Returns a new <a href="/api/slice#slice">slice</a>.</p>
+<h2 id="spritedeleteslice">Sprite:deleteSlice()<a href="#spritedeleteslice" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:deleteSlice(slice)
+sprite:deleteSlice(sliceName)
+</code></pre>
+<p>Deletes the given <a href="/api/slice#slice">slice</a>.</p>
+<h2 id="spritenewtileset">Sprite:newTileset()<a href="#spritenewtileset" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local tileset = sprite:newTileset()
+local tileset = sprite:newTileset(Grid)
+local tileset = sprite:newTileset(Rectangle)
+local tileset = sprite:newTileset(Grid, numTiles)
+local tileset = sprite:newTileset(Rectangle, numTiles)
+local tileset = sprite:newTileset(anotherTileset)
+</code></pre>
+<p>Returns a new <a href="/api/tileset#tileset">tileset</a> and adds it to the
+sprite's tilesets.</p>
+<p>If no parameters are given, the resulting tileset will have just one
+empty tile and a tile size equal to the active <a href="#spritegridbounds">sprite grid size</a>.</p>
+<p>If Grid or Rectangle is specified it is used to set the resulting
+tileset's origin and tile size.</p>
+<p>numTiles specifies the number of tiles we want the tileset to contain
+initially.</p>
+<p>If another tileset is passed as the only parameter, the result is a
+duplicate of it. Take into consideration that the passed tileset
+cannot belong to another sprite.</p>
+<h2 id="spritedeletetileset">Sprite:deleteTileset()<a href="#spritedeletetileset" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:deleteTileset(tileset)
+sprite:deleteTileset(tilesetIndex)
+</code></pre>
+<p>Deletes the given <a href="/api/tileset#tileset">tileset</a> from the sprite's tilesets.</p>
+<h2 id="spritenewtile">Sprite:newTile()<a href="#spritenewtile" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local tile = sprite:newTile(tileset [, tileIndex])
+</code></pre>
+<p>Inserts an empty <a href="/api/tile#tile">tile</a> into the given
+<a href="https://github.com/aseprite/api/blob/next-version/api/tileset.md#tileset">tileset</a>
+at a given <code>tileIndex</code>. If <code>tileIndex</code> is not provided, the new tile
+is added to the end of the tileset. This method generates undo
+information, so you could use it as an individual operation or in a
+<a href="https://github.com/aseprite/api/blob/main/api/app.md#apptransaction">transaction</a>.</p>
+<h2 id="spritedeletetile">Sprite:deleteTile()<a href="#spritedeletetile" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local tile = tileset:tile(tileIndex)
+Sprite:deleteTile(tile)
+Sprite:deleteTile(tileset, tileIndex)
+</code></pre>
+<p>Removes a <code>tile</code> from a
+<a href="https://github.com/aseprite/api/blob/next-version/api/tileset.md#tileset">tileset</a>. This
+method generates undo information, so you could use it as an
+individual operation or in a
+<a href="https://github.com/aseprite/api/blob/main/api/app.md#apptransaction">transaction</a>.</p>
+<h2 id="spriteflatten">Sprite:flatten()<a href="#spriteflatten" class="section_anchor"></a></h2>
+<pre><code class="language-lua">sprite:flatten()
+</code></pre>
+<p>Flatten all layers of the sprite into one layer.
+It's like calling <code>app.commands.FlattenLayers()</code>.</p>
+<h2 id="spriteevents">Sprite.events<a href="#spriteevents" class="section_anchor"></a></h2>
+<p>Returns the <a href="/api/events#events"><code>Events</code></a> object to associate functions
+that can act like listeners of specific <code>Sprite</code> events. E.g.</p>
+<pre><code class="language-lua">sprite.events:on('change',
+  function(ev)
+    print('The sprite has changed')
+  end)
+</code></pre>
+<p>A special <code>ev</code> argument can be sent to the listener. Which generally
+is a table, but it can be <code>nil</code> for older version of Aseprite or
+events that don't support it.</p>
+<p>Available events for a <code>Sprite</code>:</p>
+<ul>
+<li><code>'change'</code>: When the sprite content changes because an action is performed on it (also called when those actions are undone/redone). Since Aseprite v1.2.41, you can access <code>ev.fromUndo</code> property which is <code>true</code> if the change came from a undo/redo/undo history event (and not from a direct user change in the sprite).</li>
+<li><code>'filenamechange'</code>: When the filename associated to a sprite changes.</li>
+<li><code>'layerblendmode'</code>: The blend mode of a layer is changed.</li>
+<li><code>'layername'</code>: The name of a layer is changed.</li>
+<li><code>'layeropacity'</code>: The opacity of a layer is changed.</li>
+<li><code>'layervisibility'</code>: The visibility of a layer is changed.</li>
+</ul>
+<h2 id="spritetilemanagementplugin">Sprite.tileManagementPlugin<a href="#spritetilemanagementplugin" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local id = sprite.tileManagementPlugin
+sprite.tileManagementPlugin = newId
+</code></pre>
+<p>Special property to disable Aseprite
+<a href="https://aseprite.org/docs/tilemap">tile management UI</a> and use
+an external plugin to handle tilesets and tilemaps in this sprite.</p>
+<p>This property is used by the
+<a href="https://github.com/aseprite/Attachment-System">Attachment-System</a>
+plugin, but any extension can create a totally customized way to
+handle tiles (and disable the standard UI to avoid conflicts).</p>
+<p><strong>Warning</strong>: If a sprite has this property set, another plugin
+shouldn't change it, because it might break the tilesets/tilemaps
+structure.</p>
+    </div>
+      </div>
+</div>
+</div>
+</div>
+    <div class="film-decorator"></div>
+    <div id="footer">
+    <div class="container">
+
+      <div class="row">
+		<div class="col-xs-offset-0 col-xs-6 col-sm-offset-0 col-sm-4 col-md-offset-1 col-md-2">
+		  <h4>Links</h4>
+		  <ul>
+			<li><a href="/">Home</a>
+			<li><a href="https://github.com/aseprite/aseprite/issues">Known Issues</a>
+			<li><a href="https://github.com/aseprite/aseprite/issues/new">Bug Report</a>
+			<li><a href="/contributors/">Contributors</a>
+			<li><a href="/donate/">Donations</a>
+		  </ul>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-md-2">
+		  <h4>Community</h4>
+		  <ul>
+			<li><a href="https://community.aseprite.org/"><i class="fab fa-discourse"></i> Aseprite Community</a>
+			<li><a href="https://discord.gg/Yb2CeX8"><i class="fab fa-discord"></i> Discord Server</a>
+			<li><a href="https://steamcommunity.com/app/431730"><i class="fab fa-steam"></i> Steam Community</a>
+			<li><a href="https://www.reddit.com/r/aseprite/"><i class="fab fa-reddit"></i> /r/aseprite</a>
+		  </ul>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-md-2">
+		  <h4>Documentation</h4>
+		  <ul>
+			<li><a href="/quickref/">Quick reference</a>
+			<li><a href="/docs/">Docs</a> - <a href="/faq/">FAQ</a>
+			<li><a href="/tutorial/">Tutorial</a>
+			<li><a href="http://blog.aseprite.org/">Blog</a></li>
+		  </ul>
+		</div>
+		<div class="col-xs-offset-0 col-xs-6 col-sm-offset-3 col-sm-3 col-md-offset-0 col-md-2">
+		  <h4>Development</h4>
+		  <ul>
+			<li><a href="https://github.com/aseprite/aseprite/"><i class="fab fa-github"></i> GitHub</a></li>
+			<li><a href="https://dev.aseprite.org/">Devblog</a></li>
+			<li><a href="/roadmap/">Roadmap</a>
+			<li><a href="https://github.com/aseprite/aseprite/blob/master/CONTRIBUTING.md">Contribute</a>
+		  </ul>
+		</div>
+		<div class="col-xs-offset-4 col-xs-6 col-sm-offset-0 col-sm-3 col-md-offset-0 col-md-2">
+		  <h4>Social</h4>
+		  <ul>
+			<li><a href="https://twitter.com/aseprite/"><i class="fab fa-twitter"></i> Twitter</a>
+			<li><a href="https://mastodon.art/@aseprite" rel="me"><i class="fab fa-mastodon"></i> Mastodon</a>
+			<li><a href="https://www.facebook.com/aseprite"><i class="fab fa-facebook"></i> Facebook</a>
+			<li><a href="https://www.youtube.com/user/aseprite"><i class="fab fa-youtube"></i> YouTube</a>
+			<li><a href="https://www.instagram.com/aseprite/"><i class="fab fa-instagram"></i> Instagram</a>
+		  </ul>
+		</div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <p class="very-bottom">
+&copy; 2001&dash;2025
+<a href="https://igara.com/">Igara Studio S.A.</a> <span>|</span>
+<a href="https://www.aseprite.org/terms/">Terms of Service</a> <span>|</span>
+<a href="https://www.aseprite.org/privacy/">Privacy</a> <span>|</span>
+<a href="https://www.aseprite.org/support/">Support</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    </div> <!-- /#footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+
+
+<script>
+$(function(){
+
+
+$('.navbar-toggle').click(function(){
+ var updateParCount = 0;
+ var updateParScroll = setInterval(function(){
+  $(window).trigger('resize').trigger('scroll');
+  updateParCount++;
+  if (updateParCount == 20) {
+   clearInterval(updateParScroll);
+  }
+ },20);
+});
+});
+</script>
+  </body>
+</html>

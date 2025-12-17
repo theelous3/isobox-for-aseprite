@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Animated sprite editor &amp; pixel art tool">
+    <meta name="author" content="Igara Studio S.A.">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Aseprite" />
+    <meta property="og:description" content="Animated sprite editor &amp; pixel art tool" />
+    <meta property="og:image" content="https://www.aseprite.org/assets/images/og-image.png" />
+    <meta property="og:url" content="https://www.aseprite.org/" />
+
+    <title>Aseprite - Api - Dialog</title>
+    <link rel="shortcut icon" href="/assets/images/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link href="/assets/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/assets/css/brands.min.css" rel="stylesheet">
+    <link href="/assets/css/solid.min.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/aseprite.css?v=32" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button>
+          <a class="navbar-brand" href="/" title="Home"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="docs-button ">
+              <a href="/docs/"><i class="sprite sprite-docs"></i>&nbsp;Docs</a></li>
+            <li><a href="https://blog.aseprite.org/"><i class="sprite sprite-blog"></i>&nbsp;Blog</a></li>
+            <li><a href="https://community.aseprite.org/"><i class="sprite sprite-community"></i>&nbsp;Community</a></li>
+            <li ><a href="/support/"><i class="sprite sprite-support"></i>&nbsp;Support</a></li>
+            <li class="buy-button">
+              <a href="/download/"><i class="sprite sprite-download"></i>&nbsp;Buy Now</a></li>
+            <li class="social-buttons">
+              <a href="https://twitter.com/aseprite" title="Twitter"><i class="fab fa-twitter-square"></i></a>
+              <a href="https://www.facebook.com/aseprite" title="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="https://discord.gg/Yb2CeX8" title="Discord" class="discord-button"><i class="fab fa-discord"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<div class="top-shadow"></div>
+<div id="content-wrapper">
+<div id="content">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs nav-justified">
+<li class=""><a href="/docs/">Documentation</a></li>
+<li class="active"><a href="/api/">API</a></li>
+<li class=""><a href="/faq/">FAQ</a></li>
+<li class=""><a href="/quickref/">Quick Reference</a></li>
+<li class=""><a href="/tutorial/">Tutorial</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3" style="padding-top: 2em">
+      <script type="text/javascript" src="/assets/js/search.js?v=2"></script>
+      <script type="text/javascript">
+        searchUrl = "/search/api";
+        document.addEventListener("click", onSearchDismiss);
+      </script>
+      <input id="search-terms" type="text" class="form-control" placeholder="Search documentation..." autofocus onfocus="onSearchFocus(event)" onkeydown="onSearchKeyDown(event)" oninput="onSearchInput(event)">
+      <a href="https://community.aseprite.org/t/14148" style="float:right; font-size:small; font-style:italic;">Feedback</a>
+      <ul id="search-result" class="search-result" onkeydown="onSearchResultKeyDown(event)">
+        <li><small class="text-right">press ENTER to search or ESC to cancel</small></li>
+      </ul>
+      <h3 id="table-of-content">Table of content<a href="#table-of-content" class="section_anchor"></a></h3>
+<p><a href="/./api">Overview</a> <br>
+<a href="/./api/Changes">API Changes</a></p>
+<p>Globals namespaces</p>
+<ul>
+<li><a href="/./api/app#app">app</a></li>
+<li><a href="/./api/app_clipboard#appclipboard">app.clipboard</a></li>
+<li><a href="/./api/app_command#appcommand">app.command</a></li>
+<li><a href="/./api/app_fs#appfs">app.fs</a></li>
+<li><a href="/./api/app_os#appos">app.os</a></li>
+<li><a href="/./api/pixelcolor#apppixelcolor">app.pixelColor</a></li>
+<li><a href="/./api/app_theme#apptheme">app.theme</a></li>
+<li><a href="/./api/json#json">json</a></li>
+</ul>
+<p>Constants</p>
+<ul>
+<li><a href="/./api/align#align">Align</a></li>
+<li><a href="/./api/anidir#anidir">AniDir</a></li>
+<li><a href="/./api/blendmode#blendmode">BlendMode</a></li>
+<li><a href="/./api/brushpattern#brushpattern">BrushPattern</a></li>
+<li><a href="/./api/brushtype#brushtype">BrushType</a></li>
+<li><a href="/./api/colormode#colormode">ColorMode</a></li>
+<li><a href="/./api/filterchannels#filterchannel">FilterChannels</a></li>
+<li><a href="/./api/fliptype#fliptype">FlipType</a></li>
+<li><a href="/./api/ink#ink">Ink</a></li>
+<li><a href="/./api/mousebutton#mousebutton">MouseButton</a></li>
+<li><a href="/./api/mousecursor#mousecursor">MouseCursor</a></li>
+<li><a href="/./api/rangetype#rangetype">RangeType</a></li>
+<li><a href="/./api/selectionmode#selectionmode">SelectionMode</a></li>
+<li><a href="/./api/spritesheetdataformat#spritesheetdataformat">SpriteSheetDataFormat</a></li>
+<li><a href="/./api/spritesheettype#spritesheettype">SpriteSheetType</a></li>
+<li><a href="/./api/tilemapmode#tilemapmode">TilemapMode</a></li>
+<li><a href="/./api/tilesetmode#tilesetmode">TilesetMode</a></li>
+<li><a href="/./api/websocketmessagetype#websocketmessagetype">WebSocketMessageType</a></li>
+</ul>
+<p>Classes/objects</p>
+<ul>
+<li><a href="/./api/brush#brush">Brush</a></li>
+<li><a href="/./api/cel#cel">Cel</a></li>
+<li><a href="/./api/color#color">Color</a></li>
+<li><a href="/./api/colorspace#colorspace">ColorSpace</a></li>
+<li><a href="/./api/dialog#dialog">Dialog</a></li>
+<li><a href="/./api/editor#editor">Editor</a></li>
+<li><a href="/./api/events#events">Events</a></li>
+<li><a href="/./api/frame#frame">Frame</a></li>
+<li><a href="/./api/graphicscontext#graphicscontext">GraphicsContext</a></li>
+<li><a href="/./api/grid#grid">Grid</a></li>
+<li><a href="/./api/image#image">Image</a></li>
+<li><a href="/./api/imagespec#imagespec">ImageSpec</a></li>
+<li><a href="/./api/keyevent#keyevent">KeyEvent</a></li>
+<li><a href="/./api/layer#layer">Layer</a></li>
+<li><a href="/./api/mouseevent#mouseevent">MouseEvent</a></li>
+<li><a href="/./api/palette#palette">Palette</a></li>
+<li><a href="/./api/plugin#plugin">Plugin</a></li>
+<li><a href="/./api/point#point">Point</a></li>
+<li><a href="/./api/properties#properties">Properties</a></li>
+<li><a href="/./api/range#range">Range</a></li>
+<li><a href="/./api/rectangle#rectangle">Rectangle</a></li>
+<li><a href="/./api/selection#selection">Selection</a></li>
+<li><a href="/./api/site#site">Site</a></li>
+<li><a href="/./api/size#size">Size</a></li>
+<li><a href="/./api/slice#slice">Slice</a></li>
+<li><a href="/./api/sprite#sprite">Sprite</a></li>
+<li><a href="/./api/tag#tag">Tag</a></li>
+<li><a href="/./api/tile#tile">Tile</a></li>
+<li><a href="/./api/tileset#tileset">Tileset</a></li>
+<li><a href="/./api/timer#timer">Timer</a></li>
+<li><a href="/./api/tool#tool">Tool</a></li>
+<li><a href="/./api/touchevent#touchevent">TouchEvent</a></li>
+<li><a href="/./api/version#version">Version</a></li>
+<li><a href="/./api/uuid#uuid">Uuid</a></li>
+<li><a href="/./api/websocket#websocket">WebSocket</a></li>
+<li><a href="/./api/window#window">Window</a></li>
+</ul>
+      <hr>
+      <p><em><a href="https://github.com/aseprite/api/edit/main/api/dialog.md">Edit page</a></em></p>
+    </div>
+    <div id="doc_content" class="col-md-9">
+      <h1 id="dialog">Dialog<a href="#dialog" class="section_anchor"></a></h1>
+<p>The dialog class can be used to show input controls/widgets in the
+screen to get some data from the user.</p>
+<p>Example:</p>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:entry{ id="user_value", label="User Value:", text="Default User" }
+dlg:button{ id="confirm", text="Confirm" }
+dlg:button{ id="cancel", text="Cancel" }
+dlg:show()
+local data = dlg.data
+if data.confirm then
+  app.alert("The given value is '" .. data.user_value .. "'")
+end
+</code></pre>
+<p>Almost all dialogs functions return the same dialog object so we can
+use <a href="https://en.wikipedia.org/wiki/Method_chaining">method chaining</a>.
+For example:</p>
+<pre><code class="language-lua">local data =
+  Dialog():entry{ id="user_value", label="User Value:", text="Default User" }
+          :button{ id="confirm", text="Confirm" }
+          :button{ id="cancel", text="Cancel" }
+          :show().data
+if data.confirm then
+  app.alert("The given value is '" .. data.user_value .. "'")
+end
+</code></pre>
+<p>Each time we add a new widget like <code>:button{ ... }</code> some common properties
+can be specified for every kind of widget:</p>
+<pre><code class="language-lua">Dialog:widget_type{
+  id=string,
+  label=string,
+  focus=boolean,
+  enabled=boolean,
+  visible=boolean,
+  hexpand=boolean,
+  vexpand=boolean,
+}
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><code>id</code>: It's the ID to identify this widget in <a href="#dialogdata">Dialog.data</a></li>
+<li><code>label</code>: Label at the left side of the widget</li>
+<li><code>focus</code>: Focus this widget by default (useful to focus a specific
+<a href="#dialogentry">entry</a> when the dialog appears on the screen for the
+first time)</li>
+<li><code>enabled</code>: Enable or disable the widget by default</li>
+<li><code>visible</code>: Make the widget visible or hidden by default</li>
+<li><code>hexpand</code>: Expand the widget horizontally (useful to make a <a href="#dialogcanvas">canvas</a> with fixed size if we specify <code>hexpand=false</code>)</li>
+<li><code>vexpand</code>: Expand the widget vertically (useful to make a <a href="#dialogcanvas">canvas</a> with fixed size if we specify <code>vexpand=false</code>)</li>
+</ul>
+<h2 id="dialog">Dialog()<a href="#dialog" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+local dlg = Dialog(string)
+local dlg = Dialog{ title=string,
+                    autofit=align,
+                    notitlebar=false,
+                    resizeable=false,
+                    parent=otherDialog,
+                    onclose=function }
+</code></pre>
+<p>Creates a new dialog. The dialog is hidden, so you have to call
+<a href="#dialogshow">Dialog:show</a> function to make it visible. The
+constructor that receives a <code>string</code> will use that string in the title
+bar of the dialog. The constructor that receives a table can receive a
+special callback function (<code>onclose</code>) that is called when the dialog
+is closed.</p>
+<p><code>{ parent=otherDialog }</code> can be used to display an alert/subdialog
+inside a parent dialog (the parent dialog is blocked until the
+child dialog is closed).</p>
+<p><code>{ notitlebar=true }</code> can be used to display a dialog without any
+kind of title bar (the dialog must be closed with a button inside it).</p>
+<p><code>{ resizeable=false }</code> disables the user from resizing the dialog.</p>
+<p><code>{ autofit=align }</code> sets how the dialog will align when shown. See <a href="#dialogautofit">Dialog.autofit</a>.</p>
+<p>Returns <code>nil</code> if there is no UI available, i.e. <a href="/api/app#appisuiavailable">app.isUIAvailable is <code>false</code></a>.</p>
+<h2 id="dialogdata">Dialog.data<a href="#dialogdata" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+local data = dlg.data
+dlg.data = data
+</code></pre>
+<p>Gets/sets a table with one field for each widget with a given <code>id</code>.
+For each different kind of widget the field is of a different type:</p>
+<ul>
+<li><a href="#dialogbutton">button</a>/<a href="#dialogcheck">check</a>/<a href="#dialogradio">radio</a>:
+The field is a boolean (true or
+false) if the button is selected or was used to close the dialog.</li>
+<li><a href="#dialogentry">entry</a>/<a href="#dialoglabel">label</a>: A string of text.</li>
+<li><a href="#dialogslider">slider</a>: An integer.</li>
+<li><a href="#dialognumber">number</a>: An intenger or a
+number depending on the number of decimals of the number field.</li>
+<li><a href="#dialogcombobox">combobox</a>: A string with the
+selected item.</li>
+<li><a href="#dialogcolor">color</a>: A <a href="/api/color#color">Color</a>.</li>
+<li><a href="#dialogshades">shades</a>: A table with an array of <a href="/api/color#color">Color</a>s when <code>mode="sort"</code></li>
+</ul>
+<h2 id="dialogbounds">Dialog.bounds<a href="#dialogbounds" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+local bounds = dlg.bounds
+dlg.bounds = Rectangle(x, y, bounds.width, bounds.height)
+</code></pre>
+<p>Gets or sets the position and size (a <a href="/api/rectangle#rectangle">rectangle</a>) of
+the dialog. This can be useful to align several dialog that must be
+shown in the same <em>xy</em>-position.</p>
+<h2 id="dialogautofit">Dialog.autofit<a href="#dialogautofit" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local autofit = dlg.autofit
+dlg.autofit = autofit
+</code></pre>
+<p>Gets or sets the dialog autofit, as an <a href="/api/align#align">Align</a> object. The setting will only visually take effect on the dialog after a <a href="#dialogmodify"><code>Dialog:modify()</code></a>. When set, the dialog window will resize itself, anchoring at the specified value (eg. when autofitting with <code>Align.LEFT | Align.TOP</code>, the dialog bounds will shrink to the minimum size anchored at the top left of the dialog).</p>
+<h2 id="dialogsizehint">Dialog.sizeHint<a href="#dialogsizehint" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local sizeHint = dlg.sizeHint
+</code></pre>
+<p>Gets the minimum size (without cutoff) of the dialog window, as a <a href="/api/size#Size">Size</a>.</p>
+<h2 id="dialogbutton">Dialog:button()<a href="#dialogbutton" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:button{ id=string,
+            label=string,
+            text=string,
+            selected=boolean,
+            focus=boolean,
+            onclick=function }
+</code></pre>
+<p>Creates a button.</p>
+<p>Arguments (table fields):</p>
+<ul>
+<li><code>id</code>: Identifier for this button. <a href="#dialogdata">Dialog.data</a> will contain a field
+for each widget with and <code>id</code>.</li>
+<li><code>label</code>: Label at the left side of the control.</li>
+<li><code>text</code>: Text of the button.</li>
+<li><code>selected</code>: True in case that you want to show the button checked by default.</li>
+<li><code>focus</code>: Focus this button by default or when the Enter key is pressed in an <a href="#dialogentry">text entry</a> field.</li>
+<li><code>onclick</code>: Function to be called when the button is pressed.</li>
+</ul>
+<h2 id="dialogcheck">Dialog:check()<a href="#dialogcheck" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:check{ id=string,
+           label=string,
+           text=string,
+           selected=boolean,
+           onclick=function }
+</code></pre>
+<p>Creates a check box. Arguments are the same as in <a href="#dialogbutton">Dialog:button</a>.</p>
+<h2 id="dialogclose">Dialog:close()<a href="#dialogclose" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:button{ text="Close",
+            onclick=function()
+                      dlg:close()
+                    end }
+dlg:show{ wait=false }
+</code></pre>
+<p>Closes the dialog from a <code>onclick</code> <a href="#dialogbutton">button</a> event. By
+default buttons without an <code>onclick</code> event handler will close the
+dialog, but if you specify a <code>onclick</code> function, you have to call this
+function to close the dialog.</p>
+<h2 id="dialogcolor">Dialog:color()<a href="#dialogcolor" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:color{ id=string,
+           label=string,
+           color=app.Color,
+           onchange=function }
+</code></pre>
+<p>Creates a button to select a <a href="/api/color#color">color</a>.</p>
+<h2 id="dialogcombobox">Dialog:combobox()<a href="#dialogcombobox" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:combobox{ id=string,
+              label=string,
+              option=string,
+              options={ string1,string2,string3... },
+              onchange=function }
+</code></pre>
+<p>Creates a combo box/drop-down list.</p>
+<ul>
+<li><code>options</code>: Indicates a list of available options in the combobox.</li>
+<li><code>option</code>: Indicates the default selected option in the combobox (one of the <code>options</code>).</li>
+</ul>
+<h2 id="dialogentry">Dialog:entry()<a href="#dialogentry" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:entry{ id=string,
+           label=string,
+           text=string,
+           focus=boolean,
+           onchange=function }
+</code></pre>
+<p>Creates a text entry.</p>
+<h2 id="dialoglabel">Dialog:label()<a href="#dialoglabel" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:label{ id=string,
+           label=string,
+           text=string }
+</code></pre>
+<ul>
+<li><code>id</code>: Identifier for this label. If you specify it, a field in
+<a href="#dialogdata">Dialog.data</a> will be created with the given string in
+<code>text</code>.</li>
+<li><code>label</code>: Text to be used in the left side.</li>
+<li><code>text</code>: Text to be used in the right side.</li>
+</ul>
+<p>Creates a static label.</p>
+<h2 id="dialogmodify">Dialog:modify()<a href="#dialogmodify" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:modify{ id=string,
+            visible=boolean,
+            enabled=boolean,
+            text=string }
+</code></pre>
+<p>Changes properties of the given widget that matches the identifier <code>id</code>.</p>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:modify{ title = "New Dialog Title" }
+</code></pre>
+<p>Using the <code>dialog:modify</code> with a parameter <code>title</code> changes the dialog title.</p>
+<h2 id="dialognewrow">Dialog:newrow()<a href="#dialognewrow" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:newrow()
+dlg:newrow{ always=true }
+</code></pre>
+<p>Indicates that the next widget should be put in a new row in the
+dialog (useful to create buttons or several controls of the same type
+one below the other).</p>
+<p>Using the <code>newrow{ always=true }</code> is a way to avoid joining widgets of the
+same type (it's like calling <code>newrow()</code> after each new widget is added).</p>
+<h2 id="dialognumber">Dialog:number()<a href="#dialognumber" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:number{ id=string,
+            label=string,
+            text=string,
+            decimals=integer,
+            onchange=function }
+</code></pre>
+<p>Creates an entry field to input a number.</p>
+<h2 id="dialogradio">Dialog:radio()<a href="#dialogradio" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:radio{ id=string,
+           label=string,
+           text=string,
+           selected=boolean,
+           onclick=function }
+</code></pre>
+<p>Creates a radio button. Arguments are the same as in <a href="#dialogbutton">Dialog:button</a>.</p>
+<h2 id="dialogseparator">Dialog:separator()<a href="#dialogseparator" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:separator{ id=string,
+               text=string }
+</code></pre>
+<h2 id="dialogshades">Dialog:shades()<a href="#dialogshades" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:shades{ id=string,
+            label=string,
+            mode="pick" | "sort",
+            colors={ color1, color2, color3, ... },
+            onclick=function }
+</code></pre>
+<p>Creates a widget with a set of colors that can be clicked/picked (when
+<code>mode="pick"</code>, which is the default mode) or can be sorted (when
+<code>mode="sort"</code>, which is the default mode).</p>
+<p>The <code>onclick</code> function can receive a <code>event</code> parameter which is a
+table with one <code>event.color</code> field which is the color that was
+clicked, and a <code>event.button</code> field with the
+<a href="/api/mousebutton#mousebutton">mouse button</a>, for example:</p>
+<pre><code class="language-lua">dlg:shades{
+  ...
+  onclick=function(ev)
+    if ev.button == MouseButton.LEFT then
+      -- In this case we change the active foreground color
+      -- with the clicked color in the shades widget when
+      -- the left mouse button is pressed.
+      app.fgColor = ev.color
+    elseif ev.button == MouseButton.RIGHT then
+      app.bgColor = ev.color
+    end
+  end
+}
+</code></pre>
+<h2 id="dialogshow">Dialog:show()<a href="#dialogshow" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:show()
+dlg:show{
+  wait=false,
+  bounds=Rectangle(),
+  autoscrollbars=false,
+  hand=false
+}
+</code></pre>
+<p>Makes the dialog visible to the user. The script code will continue
+when the dialog is closed by default (pressing a
+<a href="#dialogbutton">button</a>).</p>
+<p>If <code>{ wait=false }</code> is used as argument, the dialog is open "in
+background", which means that the script code continues the execution
+with its following line, and the dialog will be visible until it's
+closed with some button or calling <a href="#dialogclose">Dialog:close</a> in a
+<code>onclick</code> event.</p>
+<p>With <code>{ bounds=Rectangle() }</code> you can display the dialog in a specific
+location. Useful to show the dialog in a previous position that you
+obtain from <a href="#dialogbounds">Dialog.bounds</a> property.</p>
+<p>Setting <code>{ autoscrollbars=true }</code> will add scrollbars automatically only
+if they are needed. This means that if your dialog contains enough widgets
+to make it go out of the window/screen (depending if you are using single
+window UI or multiple windows UI) then scrollbars will be shown into your
+dialog when its content doesn't fit its bounds.</p>
+<p>If <code>{ hand=true }</code>, this enables the hand tool in the editor while the dialog is active. See the <em>Edit &gt; Replace Color</em> menu for an example. Only useful if <code>{ wait=true }</code>.</p>
+<h2 id="dialogslider">Dialog:slider()<a href="#dialogslider" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:slider{ id=string,
+            label=string,
+            min=integer,
+            max=integer,
+            value=integer,
+            onchange=function,
+            onrelease=function }
+</code></pre>
+<p>Creates a slider in the dialog.</p>
+<h2 id="dialogtab">Dialog:tab()<a href="#dialogtab" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:tab{ id=string,
+         text=string,
+         onclick=function }
+</code></pre>
+<p>If called for the first time (or anytime after a
+<a href="#dialogendtabs">Dialog:endtabs</a> call), it creates a new tabs group and starts
+the first tab.
+If called after a previous <code>Dialog:tab</code> call, it marks the end of the previous
+tab and starts a new one.</p>
+<p>Once started a tab, you can define its content by adding widgets as usual. When
+you are done adding tabs, call <a href="#dialogendtabs">Dialog:endtabs</a>.</p>
+<ul>
+<li><code>id</code>: Identifier for this tab. If you specify it, you can use it in
+<a href="#dialogendtabs">Dialog:endtabs</a> to reference the selected tab. This value
+will be used also when asking for the selected tab through
+<a href="#dialogdata">Dialog.data</a>.</li>
+<li><code>text</code>: Text to display on the tab.</li>
+<li><code>onclick</code>: Function to be called when the tab is pressed. It receives a
+parameter that you can use to get the pressed tab:
+<pre><code class="language-lua">{ onclick=function(ev)
+     print("pressed tab: " .. ev.tab)
+  end }
+</code></pre>
+</li>
+</ul>
+<p>Does not support the following common properties: label, hexpand, vexpand.
+These can be specified at <a href="#dialogendtabs">Dialog:endtabs</a>.</p>
+<h2 id="dialogendtabs">Dialog:endtabs()<a href="#dialogendtabs" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:endtabs{ id=string,
+             selected=string,
+             align=integer,
+             onchange=function }
+</code></pre>
+<p>Marks the end of both the last tab and the group of tabs to which it belongs.</p>
+<ul>
+<li><code>id</code>: Identifier for this tabs widget. <a href="#dialogdata">Dialog.data</a>
+will contain a field named as this id, which will return the value
+of the currently selected tab's <code>id</code>.</li>
+<li><code>align</code>: Horizontal and vertical alignment/placement of the tabs
+selector specified with <a href="/api/align#align">Align</a> values. Its default
+value is <code>{ align=Align.CENTER|Align.TOP }</code>.</li>
+<li><code>onchange</code>: Function to be called when the tab is changed. It receives a
+parameter that you can use to get the selected tab:
+<pre><code class="language-lua">{ onchange=function(ev)
+     print("selected tab: " .. ev.tab)
+  end }
+</code></pre>
+</li>
+</ul>
+<h2 id="dialogfile">Dialog:file()<a href="#dialogfile" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:file{ id=string,
+          title=string,
+          filename=string,
+          basepath=string,
+          open=boolean,
+          save=boolean,
+          entry=boolean,
+          filetypes={ string1,string2,string3... },
+          onchange=function }
+</code></pre>
+<p>Creates a text entry field + a button to select one file to open or save, possibilities:</p>
+<ul>
+<li><code>open</code>: When true, shows a dialog to open an existing file (set to true by default).</li>
+<li><code>save</code>: When true, shows a dialog to select an existing file to overwrite or a new file to save.</li>
+</ul>
+<p>Other arguments:</p>
+<ul>
+<li><code>filename</code>: String of the selected filename to open or save.</li>
+<li><code>title</code>: The title of the file select menu.</li>
+<li><code>filetypes</code>: Array of possible file types/extensions that the user can select.</li>
+<li><code>entry</code>: Show an entry field to edit the filename manually (false by default).</li>
+<li><code>basepath</code>: The base path of the directory. Use <a href="/api/app_fs#appfsjoinpath">app.fs.joinPath()</a> for paths.</li>
+<li><code>onchange</code>: Function to be called when the filename/path is changed.</li>
+</ul>
+<h2 id="dialogcanvas">Dialog:canvas()<a href="#dialogcanvas" class="section_anchor"></a></h2>
+<pre><code class="language-lua">local dlg = Dialog()
+dlg:canvas{ id=string,
+            width=integer,
+            height=integer,
+            autoscaling=boolean,
+            onpaint=function(ev) ... end,
+            onkeydown=function(ev) ... end,
+            onkeyup=function(ev) ... end,
+            onmousemove=function(ev) ... end,
+            onmousedown=function(ev) ... end,
+            onmouseup=function(ev) ... end,
+            ondblclick=function(ev) ... end,
+            onwheel=function(ev) ... end,
+            ontouchmagnify=function(ev) ... end }
+</code></pre>
+<p>The Canvas widget provides several events to create an interactive
+experience with the user:</p>
+<ul>
+<li><code>onpaint</code>: A function that receives an event with <a href="/api/graphicscontext#graphicscontext">a GraphicsContext
+(<code>ev.context</code>)</a> to paint on.</li>
+<li><code>onkeydown</code>/<code>onkeyup</code>: Key events when a key is pressed or released.
+If a canvas widget handles these events, it will receive the
+keyboard focus when it's clicked. The <code>ev</code> event is a
+<a href="/api/keyevent">KeyEvent</a>.</li>
+<li><code>onmousemove</code>/<code>onmousedown</code>/<code>onmouseup</code>/<code>onwheel</code>/<code>ondblclick</code>: Mouse events when
+the mouse is moved over the canvas, a mouse button is pressed
+(<code>onmousedown</code>), a mouse button double clicked (<code>ondblclick</code>) a button is released (<code>onmouseup</code>), or the mouse wheel moved (<code>onwheel</code>). The <code>ev</code> event is a
+<a href="/api/mouseevent">MouseEvent</a>.</li>
+<li><code>ontouchmagnify</code>: Touch event generated when a pinch gesture is done
+in the trackpad to zoom in or out. The <code>ev</code> event is a
+<a href="/api/touchevent">TouchEvent</a>.</li>
+</ul>
+<p>The <code>autoscaling</code> property allows the script developer to draw on the GraphicsContext
+received in the canvas's onpaint event without worrying about the current UI scale
+setting. For instance, you can draw a 20[px]x30[px] rectangle in the canvas's GraphicsContext and it
+will be displayed the same at any UI scale. This property is enabled by default if omitted, so if
+you don't need it you must explicitly set it to false.</p>
+<pre><code class="language-lua">dlg:modify{ id=canvasId, mousecursor=newMouseCursor }
+</code></pre>
+<p>Additionally, when using <code>Dialog:modify()</code>, the canvas <code>mousecursor</code> property can be set to a <a href="/api/mousecursor">MouseCursor</a> value, changing the mouse cursor type.</p>
+<h2 id="dialogrepaint">Dialog:repaint()<a href="#dialogrepaint" class="section_anchor"></a></h2>
+<pre><code class="language-lua">dlg:repaint()
+</code></pre>
+<p>Will call <code>onpaint</code> event of all <a href="#dialogcanvas">canvases</a> and update the
+dialog pixels on the screen.</p>
+    </div>
+      </div>
+</div>
+</div>
+</div>
+    <div class="film-decorator"></div>
+    <div id="footer">
+    <div class="container">
+
+      <div class="row">
+		<div class="col-xs-offset-0 col-xs-6 col-sm-offset-0 col-sm-4 col-md-offset-1 col-md-2">
+		  <h4>Links</h4>
+		  <ul>
+			<li><a href="/">Home</a>
+			<li><a href="https://github.com/aseprite/aseprite/issues">Known Issues</a>
+			<li><a href="https://github.com/aseprite/aseprite/issues/new">Bug Report</a>
+			<li><a href="/contributors/">Contributors</a>
+			<li><a href="/donate/">Donations</a>
+		  </ul>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-md-2">
+		  <h4>Community</h4>
+		  <ul>
+			<li><a href="https://community.aseprite.org/"><i class="fab fa-discourse"></i> Aseprite Community</a>
+			<li><a href="https://discord.gg/Yb2CeX8"><i class="fab fa-discord"></i> Discord Server</a>
+			<li><a href="https://steamcommunity.com/app/431730"><i class="fab fa-steam"></i> Steam Community</a>
+			<li><a href="https://www.reddit.com/r/aseprite/"><i class="fab fa-reddit"></i> /r/aseprite</a>
+		  </ul>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-md-2">
+		  <h4>Documentation</h4>
+		  <ul>
+			<li><a href="/quickref/">Quick reference</a>
+			<li><a href="/docs/">Docs</a> - <a href="/faq/">FAQ</a>
+			<li><a href="/tutorial/">Tutorial</a>
+			<li><a href="http://blog.aseprite.org/">Blog</a></li>
+		  </ul>
+		</div>
+		<div class="col-xs-offset-0 col-xs-6 col-sm-offset-3 col-sm-3 col-md-offset-0 col-md-2">
+		  <h4>Development</h4>
+		  <ul>
+			<li><a href="https://github.com/aseprite/aseprite/"><i class="fab fa-github"></i> GitHub</a></li>
+			<li><a href="https://dev.aseprite.org/">Devblog</a></li>
+			<li><a href="/roadmap/">Roadmap</a>
+			<li><a href="https://github.com/aseprite/aseprite/blob/master/CONTRIBUTING.md">Contribute</a>
+		  </ul>
+		</div>
+		<div class="col-xs-offset-4 col-xs-6 col-sm-offset-0 col-sm-3 col-md-offset-0 col-md-2">
+		  <h4>Social</h4>
+		  <ul>
+			<li><a href="https://twitter.com/aseprite/"><i class="fab fa-twitter"></i> Twitter</a>
+			<li><a href="https://mastodon.art/@aseprite" rel="me"><i class="fab fa-mastodon"></i> Mastodon</a>
+			<li><a href="https://www.facebook.com/aseprite"><i class="fab fa-facebook"></i> Facebook</a>
+			<li><a href="https://www.youtube.com/user/aseprite"><i class="fab fa-youtube"></i> YouTube</a>
+			<li><a href="https://www.instagram.com/aseprite/"><i class="fab fa-instagram"></i> Instagram</a>
+		  </ul>
+		</div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <p class="very-bottom">
+&copy; 2001&dash;2025
+<a href="https://igara.com/">Igara Studio S.A.</a> <span>|</span>
+<a href="https://www.aseprite.org/terms/">Terms of Service</a> <span>|</span>
+<a href="https://www.aseprite.org/privacy/">Privacy</a> <span>|</span>
+<a href="https://www.aseprite.org/support/">Support</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    </div> <!-- /#footer -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+
+
+<script>
+$(function(){
+
+
+$('.navbar-toggle').click(function(){
+ var updateParCount = 0;
+ var updateParScroll = setInterval(function(){
+  $(window).trigger('resize').trigger('scroll');
+  updateParCount++;
+  if (updateParCount == 20) {
+   clearInterval(updateParScroll);
+  }
+ },20);
+});
+});
+</script>
+  </body>
+</html>
