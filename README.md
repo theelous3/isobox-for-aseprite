@@ -19,6 +19,7 @@ You can set a custom color for each of the sides, set a highlight and stroke col
     + Two types of the box: 3px and 2px corner
 
 ## New features:
+    + Live preview (thanks @pixelprincuples on yt/reddit for the inspiration)
     + Wireframe mode for outlining
     + Custom layer naming and auto increment
     + Improved size setting ui
