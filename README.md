@@ -1,3 +1,5 @@
+If this project helped you you can tip here on kofi :)
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F21OVNKF)
 
 # Isometric Box Generator for Aseprite
