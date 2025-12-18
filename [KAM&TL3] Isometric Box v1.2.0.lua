@@ -312,9 +312,9 @@ local function ensureCel(layer, frame)
 end
 
 local function activateLayer(layer, frame)
-    local s    = layer.sprite
-    local fr   = frame or app.activeFrame or s.frames[1]
-    local cel  = ensureCel(layer, fr)
+    local s   = layer.sprite
+    local fr  = frame or app.activeFrame or s.frames[1]
+    local cel = ensureCel(layer, fr)
     app.activeSprite = s
     app.activeFrame  = fr
     app.activeLayer  = layer
@@ -322,20 +322,22 @@ local function activateLayer(layer, frame)
     return cel
 end
 
-local function clearLayer(layer)
-    local cel = activateLayer(layer)
+local function clearLayer(layer, frame)
+    local cel = activateLayer(layer, frame)
     cel.image:clear(app.pixelColor.rgba(0, 0, 0, 0))
 end
 
--- Track whether we’re live-editing a box
+-- Track whether we're live-editing a box
 local boxState = {
     mode  = "idle", -- "idle" | "editing"
-    layer = nil
+    layer = nil,
+    frame = nil
 }
 
 local function stopEditing()
     boxState.mode  = "idle"
     boxState.layer = nil
+    boxState.frame = nil
 end
 
 local function layerExistsInSprite(spr, target)
@@ -361,6 +363,14 @@ local function isLayerAlive(layer)
     return res == true
 end
 
+local function isFrameAlive(frame, spr)
+    if not frame or not spr then return false end
+    for _, f in ipairs(spr.frames) do
+        if f == frame then return true end
+    end
+    return false
+end
+
 local function maybeEditing()
     if boxState.mode ~= "editing" then return false end
     local lyr = boxState.layer
@@ -373,12 +383,17 @@ local function maybeEditing()
         stopEditing()
         return false
     end
+    if boxState.frame and not isFrameAlive(boxState.frame, spr) then
+        stopEditing()
+        return false
+    end
     return true
 end
 
 local function startEditing(layer)
     boxState.mode  = "editing"
     boxState.layer = layer
+    boxState.frame = app.activeFrame or (layer.sprite and layer.sprite.frames[1]) or nil
 end
 
 local function collectBoxParams(data)
@@ -405,15 +420,18 @@ local function redrawBox()
     if not maybeEditing() then return end
     local params = collectBoxParams(dlg.data)
     local layer  = boxState.layer
+    local frame  = boxState.frame
 
-    clearLayer(layer)
+    app.transaction(function()
+        clearLayer(layer, frame)
 
-    drawCube(params.cubeType, params.xSize, params.ySize, params.zSize, params.strokeColor)
+        drawCube(params.cubeType, params.xSize, params.ySize, params.zSize, params.strokeColor)
 
-    if not params.wireframeOnly then
-        fillCubeSides(params.xSize, params.ySize, params.zSize, params.topColor, params.leftColor, params.rightColor)
-        addHighlight(params.cubeType, params.xSize, params.ySize, params.zSize, params.highlightColor)
-    end
+        if not params.wireframeOnly then
+            fillCubeSides(params.xSize, params.ySize, params.zSize, params.topColor, params.leftColor, params.rightColor)
+            addHighlight(params.cubeType, params.xSize, params.ySize, params.zSize, params.highlightColor)
+        end
+    end)
 
     app.refresh()
 end
