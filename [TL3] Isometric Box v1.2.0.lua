@@ -45,6 +45,7 @@ __/\\\\\\\\\\\\\_________/\\\\\_______/\\\_______/\\\________________/\\\_______
 
     Features:
         + Customize X, Y and Z size of the box
+        + Live preview (thanks pixelprinciples for the inspiration)
         + Customize colors for each side of the box
         + Custom Stroke and Highlight colors
         + Two types of the box: 3px and 2px corner
