@@ -1,25 +1,27 @@
 --[[
 
-__/\\\\\\\\\\\_____/\\\\\\\\\\\_________/\\\\\_______/\\\\____________/\\\\__/\\\\\\\\\\\\\\\__/\\\\\\\\\\\\\\\____/\\\\\\\\\______/\\\\\\\\\\\________/\\\\\\\\\_________
-__\/////\\\///____/\\\/////////\\\_____/\\\///\\\____\/\\\\\\________/\\\\\\_\/\\\///////////__\///////\\\/////___/\\\///////\\\___\/////\\\///______/\\\////////_________
-_______\/\\\______\//\\\______\///____/\\\/__\///\\\__\/\\\//\\\____/\\\//\\\_\/\\\___________________\/\\\_______\/\\\_____\/\\\_______\/\\\_______/\\\/_________________
-________\/\\\_______\////\\\__________/\\\______\//\\\_\/\\\\///\\\/\\\/_\/\\\_\/\\\\\\\\\\\___________\/\\\_______\/\\\\\\\\\\\/________\/\\\______/\\\__________________
-_________\/\\\__________\////\\\______\/\\\_______\/\\\_\/\\\__\///\\\/___\/\\\_\/\\\///////____________\/\\\_______\/\\\//////\\\________\/\\\_____\/\\\_________________
-__________\/\\\_____________\////\\\___\//\\\______/\\\__\/\\\____\///_____\/\\\_\/\\\___________________\/\\\_______\/\\\____\//\\\_______\/\\\_____\//\\\_______________
-___________\/\\\______/\\\______\//\\\___\///\\\__/\\\____\/\\\_____________\/\\\_\/\\\___________________\/\\\_______\/\\\_____\//\\\______\/\\\______\///\\\____________
-_________/\\\\\\\\\\\_\///\\\\\\\\\\\/______\///\\\\\/_____\/\\\_____________\/\\\_\/\\\\\\\\\\\\\\\_______\/\\\_______\/\\\______\//\\\__/\\\\\\\\\\\____\////\\\\\\\\\__
-_________\///////////____\///////////__________\/////_______\///______________\///__\///////////////________\///________\///________\///__\///////////________\/////////__
-__/\\\\\\\\\\\\\_________/\\\\\_______/\\\_______/\\\________________/\\\____________/\\\___________/\\\\\\\______________________________________________________________
-__\/\\\/////////\\\_____/\\\///\\\____\///\\\___/\\\/_____________/\\\\\\\________/\\\\\\\_________/\\\/////\\\___________________________________________________________
-___\/\\\_______\/\\\___/\\\/__\///\\\____\///\\\\\\/______________\/////\\\_______\/////\\\________/\\\____\//\\\_________________________________________________________
-____\/\\\\\\\\\\\\\\___/\\\______\//\\\_____\//\\\\____________________\/\\\___________\/\\\_______\/\\\_____\/\\\________________________________________________________
-_____\/\\\/////////\\\_\/\\\_______\/\\\______\/\\\\____________________\/\\\___________\/\\\_______\/\\\_____\/\\\_______________________________________________________
-______\/\\\_______\/\\\_\//\\\______/\\\_______/\\\\\\___________________\/\\\___________\/\\\_______\/\\\_____\/\\\______________________________________________________
-_______\/\\\_______\/\\\__\///\\\__/\\\_______/\\\////\\\_________________\/\\\___________\/\\\_______\//\\\____/\\\______________________________________________________
-________\/\\\\\\\\\\\\\/_____\///\\\\\/______/\\\/___\///\\\_______________\/\\\__/\\\_____\/\\\__/\\\__\///\\\\\\\/______________________________________________________
-_________\/////////////_________\/////_______\///_______\///________________\///__\///______\///__\///_____\///////_______________________________________________________
 
-  ISOMETRIC BOX GENERATOR 1.1.0 for Aseprite (https://aseprite.org)
+__/\\\\\\\\\\\_____/\\\\\\\\\\\_________/\\\\\_______/\\\\____________/\\\\__/\\\\\\\\\\\\\\\__/\\\\\\\\\\\\\\\____/\\\\\\\\\______/\\\\\\\\\\\________/\\\\\\\\\_
+ _\/////\\\///____/\\\/////////\\\_____/\\\///\\\____\/\\\\\\________/\\\\\\_\/\\\///////////__\///////\\\/////___/\\\///////\\\___\/////\\\///______/\\\////////__
+  _____\/\\\______\//\\\______\///____/\\\/__\///\\\__\/\\\//\\\____/\\\//\\\_\/\\\___________________\/\\\_______\/\\\_____\/\\\_______\/\\\_______/\\\/___________
+   _____\/\\\_______\////\\\__________/\\\______\//\\\_\/\\\\///\\\/\\\/_\/\\\_\/\\\\\\\\\\\___________\/\\\_______\/\\\\\\\\\\\/________\/\\\______/\\\_____________
+    _____\/\\\__________\////\\\______\/\\\_______\/\\\_\/\\\__\///\\\/___\/\\\_\/\\\///////____________\/\\\_______\/\\\//////\\\________\/\\\_____\/\\\_____________
+     _____\/\\\_____________\////\\\___\//\\\______/\\\__\/\\\____\///_____\/\\\_\/\\\___________________\/\\\_______\/\\\____\//\\\_______\/\\\_____\//\\\____________
+      _____\/\\\______/\\\______\//\\\___\///\\\__/\\\____\/\\\_____________\/\\\_\/\\\___________________\/\\\_______\/\\\_____\//\\\______\/\\\______\///\\\__________
+       __/\\\\\\\\\\\_\///\\\\\\\\\\\/______\///\\\\\/_____\/\\\_____________\/\\\_\/\\\\\\\\\\\\\\\_______\/\\\_______\/\\\______\//\\\__/\\\\\\\\\\\____\////\\\\\\\\\_
+        _\///////////____\///////////__________\/////_______\///______________\///__\///////////////________\///________\///________\///__\///////////________\/////////__
+__/\\\\\\\\\\\\\_________/\\\\\_______/\\\_______/\\\________________/\\\__________/\\\\\\\\\_______________/\\\\\\\____
+ _\/\\\/////////\\\_____/\\\///\\\____\///\\\___/\\\/_____________/\\\\\\\________/\\\///////\\\___________/\\\/////\\\__
+  _\/\\\_______\/\\\___/\\\/__\///\\\____\///\\\\\\/______________\/////\\\_______\///______\//\\\_________/\\\____\//\\\_
+   _\/\\\\\\\\\\\\\\___/\\\______\//\\\_____\//\\\\____________________\/\\\_________________/\\\/_________\/\\\_____\/\\\_
+    _\/\\\/////////\\\_\/\\\_______\/\\\______\/\\\\____________________\/\\\______________/\\\//___________\/\\\_____\/\\\_
+     _\/\\\_______\/\\\_\//\\\______/\\\_______/\\\\\\___________________\/\\\___________/\\\//______________\/\\\_____\/\\\_
+      _\/\\\_______\/\\\__\///\\\__/\\\_______/\\\////\\\_________________\/\\\_________/\\\/_________________\//\\\____/\\\__
+       _\/\\\\\\\\\\\\\/_____\///\\\\\/______/\\\/___\///\\\_______________\/\\\__/\\\__/\\\\\\\\\\\\\\\__/\\\__\///\\\\\\\/___
+        _\/////////////_________\/////_______\///_______\///________________\///__\///__\///////////////__\///_____\///////_____
+
+
+  ISOMETRIC BOX GENERATOR 1.2.0 for Aseprite (https://aseprite.org)
 
   This is the original project page, but I believe it to be abandoned.
   https://darkwark.itch.io/isobox-for-aseprite
@@ -65,7 +67,7 @@ _________\/////////////_________\/////_______\///_______\///________________\///
         + F5 to reload scripts, or select reload scripts from scripts menu
 
     Usage:
-        + Go to `File → Scripts → [KAM&TL3] Isometric Box v1.1.0` to run the script
+        + Go to `File → Scripts → [TL3] Isometric Box v1.2.0` to run the script
         + You can also setup a custom hotkey under `Edit → Keyboard Shortcuts`
 
 ]]
@@ -118,6 +120,9 @@ local defaultSize = {
     y = 5,
     z = 10
 }
+
+-- dialog handle (forward declared for use in redraw helpers)
+local dlg
 
 
 
@@ -296,6 +301,127 @@ local function newLayer(name)
     return lyr
 end
 
+local function ensureCel(layer, frame)
+    local s           = layer.sprite
+    local frameNumber = (frame and frame.frameNumber) or 1
+    local cel         = layer:cel(frameNumber)
+    if not cel then
+        cel = s:newCel(layer, frameNumber)
+    end
+    return cel
+end
+
+local function activateLayer(layer, frame)
+    local s    = layer.sprite
+    local fr   = frame or app.activeFrame or s.frames[1]
+    local cel  = ensureCel(layer, fr)
+    app.activeSprite = s
+    app.activeFrame  = fr
+    app.activeLayer  = layer
+    app.activeCel    = cel
+    return cel
+end
+
+local function clearLayer(layer)
+    local cel = activateLayer(layer)
+    cel.image:clear(app.pixelColor.rgba(0, 0, 0, 0))
+end
+
+-- Track whether we’re live-editing a box
+local boxState = {
+    mode  = "idle", -- "idle" | "editing"
+    layer = nil
+}
+
+local function stopEditing()
+    boxState.mode  = "idle"
+    boxState.layer = nil
+end
+
+local function layerExistsInSprite(spr, target)
+    if not spr or not target then return false end
+    local function walk(layers)
+        for _, l in ipairs(layers) do
+            if l == target then return true end
+            if l.isGroup and l.layers then
+                if walk(l.layers) then return true end
+            end
+        end
+        return false
+    end
+    return walk(spr.layers)
+end
+
+local function isLayerAlive(layer)
+    if not layer then return false end
+    local hasSprite, spr = pcall(function() return layer.sprite end)
+    if not hasSprite or not spr then return false end
+    local checked, res = pcall(layerExistsInSprite, spr, layer)
+    if not checked then return false end
+    return res == true
+end
+
+local function maybeEditing()
+    if boxState.mode ~= "editing" then return false end
+    local lyr = boxState.layer
+    if not isLayerAlive(lyr) then
+        stopEditing()
+        return false
+    end
+    local spr = lyr.sprite
+    if spr ~= app.activeSprite then
+        stopEditing()
+        return false
+    end
+    return true
+end
+
+local function startEditing(layer)
+    boxState.mode  = "editing"
+    boxState.layer = layer
+end
+
+local function collectBoxParams(data)
+    local d = data or {}
+    local x = math.max(1, math.min(maxSize.x, d.xSize or defaultSize.x))
+    local y = math.max(1, math.min(maxSize.y, d.ySize or defaultSize.y))
+    local z = math.max(3, math.min(maxSize.z, d.zSize or defaultSize.z))
+
+    return {
+        xSize          = x,
+        ySize          = y,
+        zSize          = z,
+        cubeType       = d.typeOne and 1 or 2,
+        strokeColor    = d.color or colors.stroke,
+        topColor       = d.topColor or colors.top,
+        leftColor      = d.leftColor or colors.left,
+        rightColor     = d.rightColor or colors.right,
+        highlightColor = d.highlightColor or colors.highlight,
+        wireframeOnly  = (d.noFillAll == true)
+    }
+end
+
+local function redrawBox()
+    if not maybeEditing() then return end
+    local params = collectBoxParams(dlg.data)
+    local layer  = boxState.layer
+
+    clearLayer(layer)
+
+    drawCube(params.cubeType, params.xSize, params.ySize, params.zSize, params.strokeColor)
+
+    if not params.wireframeOnly then
+        fillCubeSides(params.xSize, params.ySize, params.zSize, params.topColor, params.leftColor, params.rightColor)
+        addHighlight(params.cubeType, params.xSize, params.ySize, params.zSize, params.highlightColor)
+    end
+
+    app.refresh()
+end
+
+local function maybeRedraw()
+    if maybeEditing() then redrawBox() end
+end
+
 ---------------------------------------
 -- USER INTERFACE / STATE --
 ---------------------------------------
@@ -303,7 +429,7 @@ local updating = false
 local labelIncrement = 0
 local lastLabelName  = ""
 
-local dlg = Dialog("[KAM&TL3] Isometric Box v1.1.0")
+dlg = Dialog("[TL3] Isometric Box v1.2.0")
 
 
 local function updateDialogColorsFromFg(fg)
@@ -349,6 +475,7 @@ dlg
             dlg:modify{ id="ySizeNum", text=tostring(v) }
 
             updating = false
+            maybeRedraw()
         end
     }
     :number{
@@ -366,6 +493,7 @@ dlg
             dlg:modify{ id="ySize",    value=v }
 
             updating = false
+            maybeRedraw()
         end
     }
 
@@ -389,6 +517,7 @@ dlg
             dlg:modify{ id="xSizeNum", text=tostring(v) }
 
             updating = false
+            maybeRedraw()
         end
     }
     :number{
@@ -406,6 +535,7 @@ dlg
             dlg:modify{ id="xSize",    value=v }
 
             updating = false
+            maybeRedraw()
         end
     }
 
@@ -430,6 +560,7 @@ dlg
             dlg:modify{ id="zSizeNum", text=tostring(v) }
 
             updating = false
+            maybeRedraw()
         end
     }
     :number{
@@ -447,25 +578,27 @@ dlg
             dlg:modify{ id="zSize",    value=v }
 
             updating = false
+            maybeRedraw()
         end
     }
 
 
     :separator{ text="Colors:" }
-    :color {id="color",          label="Stroke:",    color = colors.stroke}
-    :color {id="topColor",       label="Top:",       color = colors.top}
-    :color {id="leftColor",      label="Left:",      color = colors.left}
-    :color {id="rightColor",     label="Right:",     color = colors.right}
-    :color {id="highlightColor", label="Highlight:", color = colors.highlight}
+    :color {id="color",          label="Stroke:",    color = colors.stroke,    onchange=maybeRedraw}
+    :color {id="topColor",       label="Top:",       color = colors.top,       onchange=maybeRedraw}
+    :color {id="leftColor",      label="Left:",      color = colors.left,      onchange=maybeRedraw}
+    :color {id="rightColor",     label="Right:",     color = colors.right,     onchange=maybeRedraw}
+    :color {id="highlightColor", label="Highlight:", color = colors.highlight, onchange=maybeRedraw}
     :check{
         id="noFillAll",
         label="No fill (black wireframe)",
-        selected=false
+        selected=false,
+        onclick=maybeRedraw
     }
 
     :separator()
-    :radio {id="typeOne", label="Corner:", text="3 px", selected=use3pxCorner}
-    :radio {id="typeTwo", text="2 px", selected=not use3pxCorner}
+    :radio {id="typeOne", label="Corner:", text="3 px", selected=use3pxCorner, onchange=maybeRedraw}
+    :radio {id="typeTwo", text="2 px", selected=not use3pxCorner, onchange=maybeRedraw}
 
     :separator()
     :entry{
@@ -486,6 +619,8 @@ dlg
             app.alert("Height cannot be less than 3")
             return
         end
+
+        stopEditing()
 
         app.transaction(function()
 
@@ -537,17 +672,20 @@ dlg
             -----------------------------------------------------
             -- draw --
             -----------------------------------------------------
-            newLayer(layerName)
-            drawCube(cubeType, xSize, ySize, zSize, strokeColor)
+            local layer = newLayer(layerName)
+            startEditing(layer)
 
-            if not wireframeOnly then
-                fillCubeSides(xSize, ySize, zSize, topColor, leftColor, rightColor)
-                addHighlight(cubeType, xSize, ySize, zSize, highlightColor)
-            end
+            redrawBox()
         end)
 
-        app.command.Undo()
-        app.command.Redo()
+        app.refresh()
     end
 }
+    :button{
+        id="finish",
+        text="Finish Box",
+        onclick = function()
+            stopEditing()
+        end
+    }
     :show{wait=false}
